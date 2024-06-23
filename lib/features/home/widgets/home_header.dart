@@ -38,7 +38,7 @@ class HomeHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                allTranslations.text("are_you_ready_to_fulfill_requests_today"),
+                allTranslations.text("are_you_ready_to_deliver_requests_today"),
                 style: AppTextStyles.w400
                     .copyWith(fontSize: 14, color: Styles.SUBTITLE),
               )

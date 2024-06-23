@@ -10,10 +10,9 @@ import 'package:flutter_base/helpers/shared_helper.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/helpers/translation/translations.dart';
 import 'package:flutter_base/bloc/main_app_bloc.dart';
-import 'features/home/bloc/purchase_bloc.dart';
-import 'features/home/bloc/home_items_bloc.dart';
+import 'features/home/bloc/home_requests_bloc.dart';
+import 'features/my_requests/bloc/my_requests_bloc.dart';
 import 'features/notifications/bloc/notifications_bloc.dart';
-import 'features/requests/bloc/requests_bloc.dart';
 import 'features/splash/splash_bloc.dart';
 import 'helpers/styles.dart';
 import 'bloc/user_bloc.dart';
@@ -57,10 +56,9 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<SplashBloc>(create: (_) => SplashBloc()),
         BlocProvider<UserBloc>(create: (_) => UserBloc()),
         BlocProvider<KeyBordBloc>(create: (_) => KeyBordBloc()),
-        BlocProvider<HomeItemsBloc>(create: (_) => HomeItemsBloc()),
-        BlocProvider<PurchaseBloc>(create: (_) => PurchaseBloc()),
+        BlocProvider<HomeRequestsBloc>(create: (_) => HomeRequestsBloc()),
         BlocProvider<NotificationsBloc>(create: (_) => NotificationsBloc()),
-        BlocProvider<RequestsBloc>(create: (_) => RequestsBloc()),
+        BlocProvider<MyRequestsBloc>(create: (_) => MyRequestsBloc()),
       ],
       child: StreamBuilder<String>(
         stream: mainAppBloc.langStream,

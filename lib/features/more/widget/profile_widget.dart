@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,34 +37,6 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.wallet,
-                        color: Styles.PRIMARY_COLOR, size: 24),
-                    SizedBox(width: 12.w),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "${allTranslations.text("balance")}  ",
-                        style: AppTextStyles.w400.copyWith(
-                          fontSize: 14,
-                          color: Styles.HEADER,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: UserBloc.instance.user?.balance ?? "100",
-                            style: AppTextStyles.w600.copyWith(
-                              fontSize: 18,
-                              color: Styles.PRIMARY_COLOR,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
           ),

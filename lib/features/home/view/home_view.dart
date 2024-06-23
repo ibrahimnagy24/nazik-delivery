@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/purchase_button.dart';
 import '../widgets/home_body.dart';
 import '../widgets/home_header.dart';
 
@@ -13,13 +12,7 @@ class HomeView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HomeHeader(),
-          Expanded(
-              child: Column(
-            children: [
-              HomeBody(),
-              PurchaseButton(),
-            ],
-          )),
+          HomeBody(),
         ],
       ),
     );

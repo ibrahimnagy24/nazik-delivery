@@ -5,9 +5,9 @@ import '../../../config/api_names.dart';
 import '../../../model/items_model.dart';
 import '../../../network/network_layer.dart';
 
-abstract class RequestsRepo {
+abstract class MyRequestsRepo {
   static Future<dynamic> getRequests(
-      {required SearchEngine data, required ItemStatus status}) async {
+      {required SearchEngine data, required RequestStatus status}) async {
     return await Network().request(
       ApiNames.requests,
       query: {
@@ -16,16 +16,24 @@ abstract class RequestsRepo {
         "limit": data.limit,
       },
       method: ServerMethods.GET,
-      model: ItemsModel(),
+      model: RequestsModel(),
     );
   }
 
-  static Future<Response> deleteItem(id) async {
+  static Future<Response> cancelRequest(id) async {
     return await Network().request(
-      ApiNames.deleteItem,
+      ApiNames.cancelItem,
       body: FormData.fromMap({
         "id": id,
       }),
+      method: ServerMethods.POST,
+    );
+  }
+
+  static Future<Response> updateRequestStatus(data) async {
+    return await Network().request(
+      ApiNames.cancelItem,
+      body: FormData.fromMap(data),
       method: ServerMethods.POST,
     );
   }

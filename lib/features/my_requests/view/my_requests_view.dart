@@ -4,8 +4,8 @@ import 'package:flutter_base/helpers/translation/all_translation.dart';
 import '../widgets/requests_body.dart';
 import '../widgets/requests_tabs.dart';
 
-class RequestsView extends StatelessWidget {
-  const RequestsView({super.key});
+class MyRequestsView extends StatelessWidget {
+  const MyRequestsView({super.key});
 
   @override
   Widget build(BuildContext context) {

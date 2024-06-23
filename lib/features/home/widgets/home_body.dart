@@ -12,8 +12,8 @@ import '../../../core/app_event.dart';
 import '../../../core/app_state.dart';
 import '../../../helpers/styles.dart';
 import '../../../model/search_engine.dart';
-import '../bloc/home_items_bloc.dart';
-import 'item_card.dart';
+import '../bloc/home_requests_bloc.dart';
+import '../../../widgets/request_card.dart';
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -28,7 +28,7 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   void initState() {
     controller = ScrollController();
-    HomeItemsBloc.instance.customScroll(controller);
+    HomeRequestsBloc.instance.customScroll(controller);
 
     super.initState();
   }
@@ -42,7 +42,7 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: BlocBuilder<HomeItemsBloc, AppState>(
+      child: BlocBuilder<HomeRequestsBloc, AppState>(
         builder: (context, state) {
           if (state is Loading) {
             return ListAnimator(
@@ -62,7 +62,7 @@ class _HomeBodyState extends State<HomeBody> {
             return RefreshIndicator(
               color: Styles.PRIMARY_COLOR,
               onRefresh: () async {
-                HomeItemsBloc.instance.add(Click(arguments: SearchEngine()));
+                HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
               },
               child: Column(
                 children: [
@@ -81,7 +81,7 @@ class _HomeBodyState extends State<HomeBody> {
             return RefreshIndicator(
               color: Styles.PRIMARY_COLOR,
               onRefresh: () async {
-                HomeItemsBloc.instance.add(Click(arguments: SearchEngine()));
+                HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
               },
               child: Column(
                 children: [
@@ -107,7 +107,7 @@ class _HomeBodyState extends State<HomeBody> {
           return RefreshIndicator(
             color: Styles.PRIMARY_COLOR,
             onRefresh: () async {
-              HomeItemsBloc.instance.add(Click(arguments: SearchEngine()));
+              HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
             },
             child: Column(
               children: [
@@ -115,8 +115,8 @@ class _HomeBodyState extends State<HomeBody> {
                   child: ListAnimator(
                     data: List.generate(
                       4,
-                      (index) => ItemCard(
-                        model: ItemModel(id: index),
+                      (index) => RequestCard(
+                        model: RequestModel(id: index),
                       ),
                     ),
                   ),

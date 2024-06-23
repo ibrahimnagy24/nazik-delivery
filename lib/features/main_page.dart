@@ -3,13 +3,13 @@ import 'package:flutter_base/widgets/nav_app.dart';
 
 import '../core/app_event.dart';
 import '../model/search_engine.dart';
-import 'home/bloc/home_items_bloc.dart';
+import 'home/bloc/home_requests_bloc.dart';
 import 'home/view/home_view.dart';
 import 'more/view/more_view.dart';
 import 'notifications/bloc/notifications_bloc.dart';
 import 'notifications/view/notifications_view.dart';
-import 'requests/bloc/requests_bloc.dart';
-import 'requests/view/requests_view.dart';
+import 'my_requests/bloc/my_requests_bloc.dart';
+import 'my_requests/view/my_requests_view.dart';
 
 class MainPage extends StatefulWidget {
   final int index;
@@ -30,9 +30,9 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   }
 
   initData() {
-    HomeItemsBloc.instance.add(Click(arguments: SearchEngine()));
+    HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
     NotificationsBloc.instance.add(Click(arguments: SearchEngine()));
-    RequestsBloc.instance.add(Click(arguments: SearchEngine()));
+    MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
   }
 
   Widget fregmant(int index) {
@@ -40,7 +40,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
       case 0:
         return const HomeView();
       case 1:
-        return const RequestsView();
+        return const MyRequestsView();
       case 2:
         return const NotificationsView();
       case 3:

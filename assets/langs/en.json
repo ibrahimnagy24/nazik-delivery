@@ -103,7 +103,7 @@
   "clear": "Clear",
   "morning": "Morning",
   "evening": "Evening",
-  "are_you_ready_to_fulfill_requests_today": "Are you ready to fulfill requests today?",
+  "are_you_ready_to_deliver_requests_today": "Are you ready to deliver requests today?",
   "size": "Size",
   "price": "Price",
   "quantity": "Quantity",
@@ -132,5 +132,7 @@
   "request_id": "Request id",
   "cost": "Cost",
   "delete": "Delete",
-  "item_deleted_successfully": "Item has been Deleted Successfully!"
+  "item_deleted_successfully": "Item has been Deleted Successfully!",
+  "address": "Address",
+  "products": "Products"
 }

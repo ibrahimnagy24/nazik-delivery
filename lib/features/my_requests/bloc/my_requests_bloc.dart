@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base/features/my_requests/repo/requests_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import '../../../core/app_core.dart';
 import '../../../core/app_event.dart';
 import '../../../core/app_notification.dart';
@@ -10,16 +12,21 @@ import '../../../helpers/translation/all_translation.dart';
 import '../../../model/items_model.dart';
 import '../../../model/search_engine.dart';
 import '../../../navigation/custom_navigation.dart';
-import '../repo/home_repo.dart';
-import '../widgets/item_card.dart';
+import '../../../widgets/request_card.dart';
 
-class HomeItemsBloc extends Bloc<AppEvent, AppState> {
-  static HomeItemsBloc get instance =>
+class MyRequestsBloc extends Bloc<AppEvent, AppState> {
+  static MyRequestsBloc get instance =>
       BlocProvider.of(CustomNavigator.navigatorState.currentContext!);
 
-  HomeItemsBloc() : super(Start()) {
+  MyRequestsBloc() : super(Start()) {
+    updateSelectStatus(RequestStatus.inProgress);
     on<Click>(onClick);
   }
+
+  final selectStatus = BehaviorSubject<RequestStatus>();
+  Function(RequestStatus) get updateSelectStatus => selectStatus.sink.add;
+  Stream<RequestStatus> get selectStatusStream =>
+      selectStatus.stream.asBroadcastStream();
 
   late SearchEngine _engine;
   final List<Widget> _cards = [];
@@ -45,11 +52,12 @@ class HomeItemsBloc extends Bloc<AppEvent, AppState> {
         emit(Done(cards: _cards, loading: true));
       }
 
-      ItemsModel model = await HomeRepo.getHomeRequests(_engine);
+      RequestsModel model = await MyRequestsRepo.getRequests(
+          data: _engine, status: selectStatus.value);
       if (model.status == 200) {
         if (model.requests!.isNotEmpty) {
           for (var v in model.requests!) {
-            _cards.add(ItemCard(model: v));
+            _cards.add(RequestCard(key: ValueKey(v.id), model: v));
           }
           _engine.maxPages = model.meta?.lastPage ?? 1;
           _engine.updateCurrentPage(model.meta?.currPage ?? 1);
@@ -68,6 +76,18 @@ class HomeItemsBloc extends Bloc<AppEvent, AppState> {
               borderColor: Styles.DARK_RED,
               iconName: "fill-close-circle"));
       emit(Error());
+    }
+  }
+
+  ///Update Cards When Delete a card
+  Future<void> onUpdate(Update event, Emitter<AppState> emit) async {
+    _cards.removeWhere((e) =>
+        (e.key as ValueKey<int?>).value ==
+        ValueKey(event.arguments as int).value);
+    if (_cards.isNotEmpty) {
+      emit(Done(cards: _cards));
+    } else {
+      emit(Empty());
     }
   }
 }

@@ -1,21 +1,21 @@
 import '../../../../network/mapper.dart';
 import 'meta.dart';
 
-class ItemsModel extends SingleMapper {
+class RequestsModel extends SingleMapper {
   int? status;
   String? message;
-  List<ItemModel>? requests;
+  List<RequestModel>? requests;
   Meta? meta;
 
-  ItemsModel({this.status, this.message, this.requests, this.meta});
+  RequestsModel({this.status, this.message, this.requests, this.meta});
 
-  ItemsModel.fromJson(Map<String, dynamic> json) {
+  RequestsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
       requests = [];
       json['data'].forEach((v) {
-        requests!.add(ItemModel.fromJson(v));
+        requests!.add(RequestModel.fromJson(v));
       });
     }
     meta = json['meta'] != null ? Meta.fromJson(json['meta']) : null;
@@ -34,41 +34,82 @@ class ItemsModel extends SingleMapper {
 
   @override
   Mapper fromJson(Map<String, dynamic> json) {
-    return ItemsModel.fromJson(json);
+    return RequestsModel.fromJson(json);
   }
 }
 
-class ItemModel extends SingleMapper {
+class RequestModel extends SingleMapper {
   int? id;
-  String? name;
+  String? address;
+  RequestStatus? status;
+  List<ItemModel>? items;
+
+  RequestModel({this.id, this.address, this.items, this.status});
+
+  RequestModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    address = json['address'];
+    if (json['items'] != null) {
+      items = [];
+      json['data'].forEach((v) {
+        items!.add(ItemModel.fromJson(v));
+      });
+    }
+    status = RequestStatus.values[json['status']];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['address'] = address;
+    data['status'] = status?.index;
+    if (items != null) {
+      data['items'] = items!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+
+  @override
+  Mapper fromJson(Map<String, dynamic> json) {
+    return RequestsModel.fromJson(json);
+  }
+}
+
+class ItemModel {
+  int? id;
+  String? name, price, color, size, quantity, link;
   bool? isSelected;
-  ItemStatus? status;
 
-
-  ItemModel({this.id, this.name, this.isSelected,this.status});
+  ItemModel(
+      {this.id,
+      this.name,
+      this.price,
+      this.color,
+      size,
+      this.quantity,
+      this.link});
 
   ItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    status = ItemStatus.values[json['status']];
-
-    isSelected = false;
+    price = json['price']?.toString();
+    color = json['color']?.toString();
+    size = json['size']?.toString();
+    link = json['link']?.toString();
+    quantity = json['quantity']?.toString();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
-    data["is_selected"] = isSelected;
-    data['status'] = status?.index;
-
-
+    data['price'] = price;
+    data['color'] = color;
+    data['size'] = size;
+    data['quantity'] = quantity;
+    data['link'] = link;
     return data;
   }
-
-  @override
-  Mapper fromJson(Map<String, dynamic> json) {
-    return ItemsModel.fromJson(json);
-  }
 }
-enum ItemStatus { inProgress, done, canceled }
+
+enum RequestStatus { inProgress, done, canceled }

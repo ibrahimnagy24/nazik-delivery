@@ -13,14 +13,7 @@ abstract class HomeRepo {
           "limit": data.limit,
         },
         method: ServerMethods.GET,
-        model: ItemsModel());
+        model: RequestsModel());
   }
 
-  static Future<dynamic> purchase(data) async {
-    return await Network().request(
-      ApiNames.purchase,
-      body: data,
-      method: ServerMethods.POST,
-    );
-  }
 }

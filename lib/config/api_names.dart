@@ -12,7 +12,7 @@ abstract class ApiNames {
   ///Requests
   static const requests = "requests";
   static const purchase = "purchase";
-  static const deleteItem = "delete/item";
+  static const cancelItem = "cancel/item";
 
 
   ///Notifications

@@ -4,7 +4,7 @@ import 'package:flutter_base/widgets/tab_widget.dart';
 
 import '../../../helpers/translation/all_translation.dart';
 import '../../../model/items_model.dart';
-import '../bloc/requests_bloc.dart';
+import '../bloc/my_requests_bloc.dart';
 
 class RequestsTabs extends StatelessWidget {
   const RequestsTabs({super.key});
@@ -13,20 +13,20 @@ class RequestsTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16.h),
-      child: StreamBuilder<ItemStatus>(
-          stream: RequestsBloc.instance.selectStatusStream,
+      child: StreamBuilder<RequestStatus>(
+          stream: MyRequestsBloc.instance.selectStatusStream,
           builder: (context, snapshot) {
             return Row(
               children: List.generate(
-                  ItemStatus.values.length,
+                  RequestStatus.values.length,
                   (index) => Expanded(
                         child: TabWidget(
                           data: allTranslations
-                              .text(ItemStatus.values[index].name),
+                              .text(RequestStatus.values[index].name),
                           isSelected:
-                              ItemStatus.values[index] == snapshot.data,
-                          onClick: () => RequestsBloc.instance
-                              .updateSelectStatus(ItemStatus.values[index]),
+                              RequestStatus.values[index] == snapshot.data,
+                          onClick: () => MyRequestsBloc.instance
+                              .updateSelectStatus(RequestStatus.values[index]),
                           expand: true,
                         ),
                       )),

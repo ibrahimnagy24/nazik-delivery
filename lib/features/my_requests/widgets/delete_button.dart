@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/app_event.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
-import '../bloc/delete_item_bloc.dart';
+import '../bloc/cancel_reuqest_bloc.dart';
 
 class DeleteItemButton extends StatelessWidget {
   const DeleteItemButton({super.key, required this.id});
@@ -16,8 +16,8 @@ class DeleteItemButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DeleteItemBloc(),
-      child: BlocBuilder<DeleteItemBloc, AppState>(
+      create: (context) => CancelRequestBloc(),
+      child: BlocBuilder<CancelRequestBloc, AppState>(
         builder: (context, state) {
           return CustomBtn(
             height: 30,
@@ -27,7 +27,7 @@ class DeleteItemButton extends StatelessWidget {
             color: Styles.IN_ACTIVE.withOpacity(0.1),
             textColor: Styles.IN_ACTIVE,
             onPressed: () =>
-                context.read<DeleteItemBloc>().add(Click(arguments: id)),
+                context.read<CancelRequestBloc>().add(Click(arguments: id)),
           );
         },
       ),

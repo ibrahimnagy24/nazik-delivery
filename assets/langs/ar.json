@@ -76,7 +76,7 @@
   "submit": "ارسال",
   "morning": "صباح الخير",
   "evening": "مساء الخير",
-  "are_you_ready_to_fulfill_requests_today": "هل انت مستعد لتنفيذ الطلبات  اليوم؟",
+  "are_you_ready_to_deliver_requests_today": "هل انت مستعد لتوصيل الطلبات  اليوم؟",
   "size": "الحجم",
   "price": "السعر",
   "quantity": "الكمية",
@@ -107,5 +107,8 @@
   "request_id": "رقم الطلب",
   "cost": "التكلفة",
   "delete": "حذف",
-  "item_deleted_successfully": "تم حذف العنصر بنجاح!"
+  "item_deleted_successfully": "تم حذف العنصر بنجاح!",
+  "address": "العنوان",
+  "products": "المنتجات"
+
 }

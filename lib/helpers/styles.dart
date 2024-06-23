@@ -124,12 +124,12 @@ abstract class Styles {
     child: Divider(color: Styles.FILL_COLOR, thickness: 1.0),
   );
 
-  static Color requestStatus(ItemStatus? status) {
-    if (status == ItemStatus.inProgress) {
+  static Color requestStatus(RequestStatus? status) {
+    if (status == RequestStatus.inProgress) {
       return PENDING;
-    } else if (status == ItemStatus.done) {
+    } else if (status == RequestStatus.done) {
       return ACTIVE;
-    } else if (status == ItemStatus.canceled) {
+    } else if (status == RequestStatus.canceled) {
       return IN_ACTIVE;
     } else {
       return WHITE_COLOR;

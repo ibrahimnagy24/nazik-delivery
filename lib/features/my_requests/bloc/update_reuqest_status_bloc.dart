@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_base/features/requests/bloc/requests_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_base/core/app_core.dart';
 import 'package:flutter_base/core/app_event.dart';
@@ -8,16 +7,18 @@ import 'package:flutter_base/core/app_state.dart';
 import '../../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
 import '../repo/requests_repo.dart';
+import 'my_requests_bloc.dart';
 
-class DeleteItemBloc extends Bloc<AppEvent, AppState> {
-  DeleteItemBloc() : super(Start()) {
+class UpdateRequestStatusBloc extends Bloc<AppEvent, AppState> {
+  UpdateRequestStatusBloc() : super(Start()) {
     on<Click>(onClick);
   }
 
   Future<void> onClick(AppEvent event, Emitter emit) async {
     emit(Loading());
     try {
-      Response res = await RequestsRepo.deleteItem(event.arguments as int);
+      Response res =
+          await MyRequestsRepo.updateRequestStatus(event.arguments as Map);
       if (res.statusCode == 200) {
         AppCore.showSnackBar(
           notification: AppNotification(
@@ -26,7 +27,8 @@ class DeleteItemBloc extends Bloc<AppEvent, AppState> {
               borderColor: Styles.GREEN,
               isFloating: true),
         );
-        RequestsBloc.instance.add(Update(arguments: event.arguments as int));
+        MyRequestsBloc.instance
+            .add(Update(arguments: (event.arguments as Map)["id"]));
         emit(Done());
       } else {
         AppCore.showSnackBar(

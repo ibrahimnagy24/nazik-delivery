@@ -57,7 +57,7 @@ class MyRequestsBloc extends Bloc<AppEvent, AppState> {
       if (model.status == 200) {
         if (model.requests!.isNotEmpty) {
           for (var v in model.requests!) {
-            _cards.add(RequestCard(key: ValueKey(v.id), model: v));
+            _cards.add(RequestCard(key: ValueKey(v.id),fromMyRequest: true  ,model: v));
           }
           _engine.maxPages = model.meta?.lastPage ?? 1;
           _engine.updateCurrentPage(model.meta?.currPage ?? 1);

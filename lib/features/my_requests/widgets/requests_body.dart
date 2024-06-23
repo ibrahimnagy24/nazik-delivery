@@ -116,6 +116,7 @@ class _RequestsBodyState extends State<RequestsBody> {
                     data: List.generate(
                       3,
                       (index) => RequestCard(
+                        fromMyRequest: true,
                         model: RequestModel(
                           id: index,
                           status: RequestStatus.values[index],

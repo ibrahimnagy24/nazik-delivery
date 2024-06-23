@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/helpers/styles.dart';
 import 'package:flutter_base/helpers/text_styles.dart';
@@ -6,8 +7,9 @@ import 'package:flutter_base/model/items_model.dart';
 import 'package:flutter_base/utility/extensions.dart';
 
 class RequestCard extends StatelessWidget {
-  const RequestCard({super.key, this.model});
+  const RequestCard({super.key, this.model, this.fromMyRequest = false});
   final RequestModel? model;
+  final bool fromMyRequest;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,41 @@ class RequestCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "#${model?.id ?? 0}",
-            style: AppTextStyles.w600.copyWith(
-              fontSize: 16,
-              color: Styles.HEADER,
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  "#${model?.id ?? 0}",
+                  style: AppTextStyles.w600.copyWith(
+                    fontSize: 16,
+                    color: Styles.HEADER,
+                  ),
+                ),
+              ),
+              SizedBox(width: 8.w),
+              if (fromMyRequest)
+
+                ///Request Status
+                Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.h),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color:
+                        Styles.requestStatus(model?.status).withOpacity(0.08),
+                  ),
+                  child: Text(
+                    allTranslations.text(model?.status?.name ?? ""),
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.w600.copyWith(
+                      fontSize: 14,
+                      height: 1.2,
+                      color: Styles.requestStatus(model?.status),
+                    ),
+                  ),
+                ),
+            ],
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),

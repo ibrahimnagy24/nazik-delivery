@@ -102,13 +102,16 @@
   "balance": "الرصيد",
   "you_must_change_something": "عفوا, يجب عليك تغير اي شئ",
   "inProgress": "قيد التنفيذ",
-  "done": "تم",
+  "picked": "تم الاستلام",
+  "pick_up": "استلام",
+  "done": "تم التوصيل",
   "canceled": "ملغى",
   "request_id": "رقم الطلب",
   "cost": "التكلفة",
   "delete": "حذف",
   "item_deleted_successfully": "تم حذف العنصر بنجاح!",
   "address": "العنوان",
-  "products": "المنتجات"
+  "products": "المنتجات",
+  "phone": "رقم الهاتف"
 
 }

@@ -127,11 +127,11 @@ abstract class Styles {
   static Color requestStatus(RequestStatus? status) {
     if (status == RequestStatus.inProgress) {
       return PENDING;
+    } else if (status == RequestStatus.picked) {
+      return HEADER;
     } else if (status == RequestStatus.done) {
       return ACTIVE;
-    } else if (status == RequestStatus.canceled) {
-      return IN_ACTIVE;
-    } else {
+    }  else {
       return WHITE_COLOR;
     }
   }

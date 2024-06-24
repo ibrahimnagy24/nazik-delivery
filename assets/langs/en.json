@@ -127,6 +127,8 @@
   "balance": "Balance",
   "you_must_change_something": "Oops! You must change something",
   "inProgress": "In Progress",
+  "picked": "Picked",
+  "pick_up": "Pick up",
   "done": "Done",
   "canceled": "Canceled",
   "request_id": "Request id",
@@ -134,5 +136,6 @@
   "delete": "Delete",
   "item_deleted_successfully": "Item has been Deleted Successfully!",
   "address": "Address",
-  "products": "Products"
+  "products": "Products",
+  "phone": "Phone"
 }

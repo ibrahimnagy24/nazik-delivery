@@ -6,6 +6,8 @@ import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/model/items_model.dart';
 import 'package:flutter_base/utility/extensions.dart';
 
+import '../features/my_requests/widgets/change_request_status.dart';
+
 class RequestCard extends StatelessWidget {
   const RequestCard({super.key, this.model, this.fromMyRequest = false});
   final RequestModel? model;
@@ -35,9 +37,9 @@ class RequestCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 8.w),
-              if (fromMyRequest)
 
-                ///Request Status
+              ///Request Status
+              if (fromMyRequest)
                 Container(
                   padding:
                       EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.h),
@@ -59,6 +61,8 @@ class RequestCard extends StatelessWidget {
                 ),
             ],
           ),
+
+          ///Products
           Padding(
             padding: EdgeInsets.symmetric(vertical: 2.h),
             child: RichText(
@@ -81,10 +85,35 @@ class RequestCard extends StatelessWidget {
               ),
             ),
           ),
+
+          ///Phone Number
+          if (fromMyRequest)
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.h),
+              child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  text: "${allTranslations.text("phone")}: ",
+                  style: AppTextStyles.w600
+                      .copyWith(fontSize: 14, color: Styles.HEADER),
+                  children: [
+                    TextSpan(
+                      text: model?.phoneNumber ?? "01010101010",
+                      style: AppTextStyles.w400.copyWith(
+                        fontSize: 14,
+                        color: Styles.SUB_HEADER,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+
+          ///Address
           RichText(
             textAlign: TextAlign.start,
             text: TextSpan(
-              text: "${allTranslations.text("address")} ",
+              text: "${allTranslations.text("address")}: ",
               style: AppTextStyles.w600
                   .copyWith(fontSize: 14, color: Styles.HEADER),
               children: [
@@ -102,6 +131,12 @@ class RequestCard extends StatelessWidget {
               ],
             ),
           ),
+
+          if (fromMyRequest && model?.status != RequestStatus.done)
+            ChangeRequestStatus(
+              id: model?.id,
+              status: model?.status,
+            ),
         ],
       ),
     );

@@ -40,15 +40,17 @@ class RequestsModel extends SingleMapper {
 
 class RequestModel extends SingleMapper {
   int? id;
-  String? address;
+  String? address, phoneNumber;
   RequestStatus? status;
   List<ItemModel>? items;
 
-  RequestModel({this.id, this.address, this.items, this.status});
+  RequestModel(
+      {this.id, this.address, this.phoneNumber, this.items, this.status});
 
   RequestModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     address = json['address'];
+    phoneNumber = json['phone_number'];
     if (json['items'] != null) {
       items = [];
       json['data'].forEach((v) {
@@ -61,6 +63,7 @@ class RequestModel extends SingleMapper {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['phone_number'] = phoneNumber;
     data['address'] = address;
     data['status'] = status?.index;
     if (items != null) {
@@ -112,4 +115,4 @@ class ItemModel {
   }
 }
 
-enum RequestStatus { inProgress, done, canceled }
+enum RequestStatus { inProgress, picked, done }

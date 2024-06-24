@@ -20,19 +20,9 @@ abstract class MyRequestsRepo {
     );
   }
 
-  static Future<Response> cancelRequest(id) async {
-    return await Network().request(
-      ApiNames.cancelItem,
-      body: FormData.fromMap({
-        "id": id,
-      }),
-      method: ServerMethods.POST,
-    );
-  }
-
   static Future<Response> updateRequestStatus(data) async {
     return await Network().request(
-      ApiNames.cancelItem,
+      ApiNames.updateRequestStatus,
       body: FormData.fromMap(data),
       method: ServerMethods.POST,
     );

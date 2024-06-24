@@ -14,4 +14,5 @@ class Routes {
   static const EDIT_PROFILE = "EDIT_PROFILE";
   static const TERMS = "TERMS";
   static const PRIVACY = "PRIVACY";
+  static const REQUEST_DETAILS = "REQUEST_DETAILS";
 }

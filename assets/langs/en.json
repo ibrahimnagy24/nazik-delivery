@@ -137,5 +137,6 @@
   "item_deleted_successfully": "Item has been Deleted Successfully!",
   "address": "Address",
   "products": "Products",
-  "phone": "Phone"
+  "phone": "Phone",
+  "request_details": "Request Details"
 }

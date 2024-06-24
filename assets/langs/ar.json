@@ -112,6 +112,7 @@
   "item_deleted_successfully": "تم حذف العنصر بنجاح!",
   "address": "العنوان",
   "products": "المنتجات",
-  "phone": "رقم الهاتف"
+  "phone": "رقم الهاتف",
+  "request_details": "تفاصيل الطلب"
 
 }

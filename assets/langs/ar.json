@@ -113,6 +113,8 @@
   "address": "العنوان",
   "products": "المنتجات",
   "phone": "رقم الهاتف",
-  "request_details": "تفاصيل الطلب"
+  "request_details": "تفاصيل الطلب",
+  "order_id": "رقم الطلب",
+  "deliver": "توصيل"
 
 }

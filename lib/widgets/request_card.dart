@@ -35,11 +35,21 @@ class RequestCard extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: Text(
-                    "#${model?.id ?? 0}",
-                    style: AppTextStyles.w600.copyWith(
-                      fontSize: 16,
-                      color: Styles.HEADER,
+                  child: RichText(
+                    textAlign: TextAlign.start,
+                    text: TextSpan(
+                      text: "${allTranslations.text("order_id")}: ",
+                      style: AppTextStyles.w600
+                          .copyWith(fontSize: 14, color: Styles.HEADER),
+                      children: [
+                        TextSpan(
+                          text: "#10",
+                          style: AppTextStyles.w400.copyWith(
+                            fontSize: 14,
+                            color: Styles.SUB_HEADER,
+                          ),
+                        )
+                      ],
                     ),
                   ),
                 ),

@@ -120,6 +120,24 @@ class _RequestsBodyState extends State<RequestsBody> {
                         model: RequestModel(
                           id: index,
                           status: RequestStatus.values[index],
+                          items: [
+                            ItemModel(
+                                id: 1,
+                                color: "red",
+                                name: "T-shirt",
+                                price: "240",
+                                link: "www.zara.com",
+                                quantity: "3",
+                                size: "L"),
+                            ItemModel(
+                                id: 2,
+                                color: "red",
+                                name: "T-shirt",
+                                price: "240",
+                                link: "www.zara.com",
+                                quantity: "3",
+                                size: "L"),
+                          ],
                         ),
                       ),
                     ),

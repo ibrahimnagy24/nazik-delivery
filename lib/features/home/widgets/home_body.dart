@@ -116,7 +116,27 @@ class _HomeBodyState extends State<HomeBody> {
                     data: List.generate(
                       4,
                       (index) => RequestCard(
-                        model: RequestModel(id: index),
+                        model: RequestModel(
+                          id: index,
+                          items: [
+                            ItemModel(
+                                id: 1,
+                                color: "red",
+                                name: "T-shirt",
+                                price: "240",
+                                link: "www.zara.com",
+                                quantity: "3",
+                                size: "L"),
+                            ItemModel(
+                                id: 2,
+                                color: "red",
+                                name: "T-shirt",
+                                price: "240",
+                                link: "www.zara.com",
+                                quantity: "3",
+                                size: "L"),
+                          ],
+                        ),
                       ),
                     ),
                   ),

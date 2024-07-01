@@ -36,7 +36,8 @@ class EditProfileView extends StatelessWidget {
                           /// name
                           CustomTextField(
                             controller: context.read<EditProfileBloc>().name,
-                            hint: allTranslations.text("name"),
+                            label: allTranslations.text("name"),
+                            hint: allTranslations.text("enter_your_name"),
                             type: TextInputType.name,
                             autoValidateMode: AutovalidateMode.disabled,
                             validation: NameValidator.nameValidator,
@@ -45,8 +46,9 @@ class EditProfileView extends StatelessWidget {
 
                           /// email
                           CustomTextField(
-                            controller: context.read<EditProfileBloc>().name,
-                            hint: allTranslations.text("email"),
+                            controller: context.read<EditProfileBloc>().email,
+                            label: allTranslations.text("email"),
+                            hint: allTranslations.text("enter_email"),
                             type: TextInputType.emailAddress,
                             isReadOnly: true,
                             autoValidateMode: AutovalidateMode.disabled,

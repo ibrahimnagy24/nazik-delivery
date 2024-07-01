@@ -4,6 +4,7 @@
   "unit_name":"Unit Name",
   "username": "Username",
   "name":"Name",
+  "enter_your_name":"Enter your name",
   "org": "Organization Name",
   "resend": "Resend Code",
   "location": "Location",

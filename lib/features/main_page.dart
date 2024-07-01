@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/widgets/nav_app.dart';
 
+import '../bloc/user_bloc.dart';
 import '../core/app_event.dart';
 import '../model/search_engine.dart';
 import 'home/bloc/home_requests_bloc.dart';
@@ -30,6 +31,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
   }
 
   initData() {
+    UserBloc.instance.add(Click());
     HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
     NotificationsBloc.instance.add(Click(arguments: SearchEngine()));
     MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));

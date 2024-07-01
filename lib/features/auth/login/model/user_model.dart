@@ -12,7 +12,6 @@ class UserModel extends SingleMapper {
   String? createdAt;
   int? roleId;
   String? roleName;
-  List<String>? permissions;
   String? emailSignature;
   String? profilePhoto;
 
@@ -28,7 +27,6 @@ class UserModel extends SingleMapper {
       this.createdAt,
       this.roleId,
       this.roleName,
-      this.permissions,
       this.emailSignature,
       this.profilePhoto});
 
@@ -44,7 +42,6 @@ class UserModel extends SingleMapper {
     createdAt = json['created_at'];
     roleId = json['role_id'];
     roleName = json['role_name'];
-    permissions = json['permissions'].cast<String>();
     emailSignature = json['email_signature'];
     profilePhoto = json['profile_photo'];
   }
@@ -62,7 +59,6 @@ class UserModel extends SingleMapper {
     data['created_at'] = createdAt;
     data['role_id'] = roleId;
     data['role_name'] = roleName;
-    data['permissions'] = permissions;
     data['email_signature'] = emailSignature;
     data['profile_photo'] = profilePhoto;
     return data;

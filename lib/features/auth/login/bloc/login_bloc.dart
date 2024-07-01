@@ -36,34 +36,23 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
         password: passwordTEC.text.trim(),
         username: mailTEC.text.trim(),
       );
-      if (res.statusCode == 200) {
-        if (res.data != null &&
-            res.data["data"] != null &&
-            res.data["data"]["type"] == ["delivery-employee"]) {
-          UserModel model = UserModel.fromJson(res.data["data"]);
-          if (model.token != null) {
-            SharedHelper.sharedHelper!.writeData(CachingKey.TOKEN, model.token);
-            SharedHelper.sharedHelper!.writeData(CachingKey.SKIP, true);
-            SharedHelper.sharedHelper!.writeData(CachingKey.IS_LOGIN, true);
-            SharedHelper.sharedHelper!.writeData(
-              CachingKey.USER,
-              json.encode(
-                model.toJson(),
-              ),
-            );
-            CustomNavigator.push(Routes.MAIN_PAGE, clean: true);
-            emit(Done());
-          } else {
-            AppCore.showSnackBar(
-              notification: AppNotification(
-                message: allTranslations.text("invalid_credentials"),
-                backgroundColor: Styles.IN_ACTIVE,
-                borderColor: Styles.DARK_RED,
-                iconName: "fill-close-circle",
-              ),
-            );
-            emit(Start());
-          }
+      if (res.statusCode == 200 &&
+          res.data != null &&
+          res.data["data"] != null &&
+          res.data["data"]["type"] == "delivery-employee") {
+        UserModel model = UserModel.fromJson(res.data["data"]);
+        if (model.token != null) {
+          SharedHelper.sharedHelper!.writeData(CachingKey.TOKEN, model.token);
+          SharedHelper.sharedHelper!.writeData(CachingKey.SKIP, true);
+          SharedHelper.sharedHelper!.writeData(CachingKey.IS_LOGIN, true);
+          SharedHelper.sharedHelper!.writeData(
+            CachingKey.USER,
+            json.encode(
+              model.toJson(),
+            ),
+          );
+          CustomNavigator.push(Routes.MAIN_PAGE, clean: true);
+          emit(Done());
         } else {
           AppCore.showSnackBar(
             notification: AppNotification(
@@ -88,13 +77,11 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
       }
     } catch (e) {
       AppCore.showSnackBar(
-        notification: AppNotification(
-          message: e.toString(),
-          backgroundColor: Styles.IN_ACTIVE,
-          borderColor: Styles.DARK_RED,
-          iconName: "fill-close-circle",
-        ),
-      );
+          notification: AppNotification(
+              message: allTranslations.text("something_went_wrong"),
+              backgroundColor: Styles.IN_ACTIVE,
+              borderColor: Styles.DARK_RED,
+              iconName: "fill-close-circle"));
       emit(Error());
     }
   }

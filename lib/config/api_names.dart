@@ -10,8 +10,8 @@ abstract class ApiNames {
   static const profile = "profile";
   static const editProfile = "profile/edit";
   ///Requests
-  static const requests = "requests";
-  static requestDetails(id) => "requests/$id";
+  static const requests = "orders";
+  static requestDetails(id) => "orders/$id";
 
   static const purchase = "purchase";
   static const updateRequestStatus = "cancel/item";

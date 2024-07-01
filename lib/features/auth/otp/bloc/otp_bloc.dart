@@ -30,7 +30,7 @@ class OtpBloc extends Bloc<AppEvent, AppState> {
       emit(Loading());
       Map<String, dynamic> data = {
         "email": event.arguments as String,
-        "otp": codeTEC.text.trim()
+        "code": codeTEC.text.trim()
       };
 
       Response res = await OtpRepo.verify(data);

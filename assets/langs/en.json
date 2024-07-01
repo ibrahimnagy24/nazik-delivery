@@ -140,5 +140,7 @@
   "phone": "Phone",
   "request_details": "Request Details",
   "order_id": "Order ID",
-  "deliver": "Deliver"
+  "deliver": "Deliver",
+  "invalid_credentials": "Invalid Credentials"
+
 }

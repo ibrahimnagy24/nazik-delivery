@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../helpers/styles.dart';
+
 class CustomBtn extends StatelessWidget {
   const CustomBtn({
     super.key,
@@ -42,8 +44,8 @@ class CustomBtn extends StatelessWidget {
           height: height.h,
           width: width,
           decoration: BoxDecoration(
-            color: color ?? context.color.primary,
-            borderRadius: BorderRadius.circular(radius??12),
+            color: color ?? Styles.PRIMARY_COLOR,
+            borderRadius: BorderRadius.circular(radius ?? 12),
             border: Border.all(
               color: borderColor,
             ),
@@ -51,14 +53,14 @@ class CustomBtn extends StatelessWidget {
           child: Center(
             child: loading
                 ? SpinKitThreeBounce(
-                    color: context.theme.primaryColor,
+                    color: textColor ?? context.color.surface,
                     size: 25,
                   )
                 : Text(
                     text,
                     style: context.textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: textColor ?? context.color.background,
+                      color: textColor ?? context.color.surface,
                       fontSize: fontSize,
                     ),
                   ),

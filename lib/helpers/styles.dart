@@ -7,7 +7,7 @@ import '../model/items_model.dart';
 
 abstract class Styles {
   static const Color RED_CHART_COLOR = Color(0xffE24F4F);
-  static const Color PRIMARY_COLOR = Colors.black;
+  static const Color PRIMARY_COLOR = Color(0XFF5d345d);
   static const Color ACCENT_PRIMARY_COLOR = Color(0xffF7F1FC);
   static const Color ACCENT_COLOR = Color(0xFF70EEC8);
   static const Color FIELD_BORDER = Color(0xFFF9F9FA);
@@ -115,9 +115,8 @@ abstract class Styles {
       );
   static final Widget splash = Image.asset(
     'assets/splash.png',
-    color: Styles.PRIMARY_COLOR,
-    height: 158.0,
-    width: 180.0,
+    height: 250.0,
+    width: 250.0,
   );
   static const Widget divider = Padding(
     padding: EdgeInsets.symmetric(horizontal: 24),
@@ -131,7 +130,7 @@ abstract class Styles {
       return HEADER;
     } else if (status == RequestStatus.done) {
       return ACTIVE;
-    }  else {
+    } else {
       return WHITE_COLOR;
     }
   }

@@ -26,7 +26,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Styles.WHITE_COLOR,
+      backgroundColor: Styles.PRIMARY_COLOR,
       body: SafeArea(
         child: Column(
           children: [
@@ -49,7 +49,7 @@ class _SplashState extends State<Splash> {
                 child: Text(
                   "Nazik",
                   style: TextStyle(
-                    color: context.theme.primaryColor,
+                    color: context.color.surface,
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),

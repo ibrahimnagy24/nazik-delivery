@@ -50,20 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAu3aikNDjDZCITYvtXlHmrKMxUtPilfLw',
-    appId: '1:721458202222:android:15fbeb11a204ceeae1487f',
-    messagingSenderId: '721458202222',
-    projectId: 'nazik-delivery',
-    storageBucket: 'nazik-delivery.appspot.com',
+    apiKey: 'AIzaSyAi6L7GMQ3L0jIvo3zPBgnNQmMZHQ19qqM',
+    appId: '1:18321061676:android:6d0db96961b8cc24fdde89',
+    messagingSenderId: '18321061676',
+    projectId: 'nazik-5da2e',
+    storageBucket: 'nazik-5da2e.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBGvqfJI5SAkH4TE2AsV3Zgl5UXMjtQn0E',
-    appId: '1:721458202222:ios:4b2d2ad7ee91e3bfe1487f',
-    messagingSenderId: '721458202222',
-    projectId: 'nazik-delivery',
-    storageBucket: 'nazik-delivery.appspot.com',
+    apiKey: 'AIzaSyA-sNaLYrv3dWGaMNDMaHbhdVzTVlaApzo',
+    appId: '1:18321061676:ios:77d076b49318127dfdde89',
+    messagingSenderId: '18321061676',
+    projectId: 'nazik-5da2e',
+    storageBucket: 'nazik-5da2e.appspot.com',
     iosBundleId: 'com.nazik.delivery',
   );
-
 }

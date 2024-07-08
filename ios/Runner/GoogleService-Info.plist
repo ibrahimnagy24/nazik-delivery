@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBGvqfJI5SAkH4TE2AsV3Zgl5UXMjtQn0E</string>
+	<string>AIzaSyA-sNaLYrv3dWGaMNDMaHbhdVzTVlaApzo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>721458202222</string>
+	<string>18321061676</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.nazik.delivery</string>
 	<key>PROJECT_ID</key>
-	<string>nazik-delivery</string>
+	<string>nazik-5da2e</string>
 	<key>STORAGE_BUCKET</key>
-	<string>nazik-delivery.appspot.com</string>
+	<string>nazik-5da2e.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:721458202222:ios:4b2d2ad7ee91e3bfe1487f</string>
+	<string>1:18321061676:ios:77d076b49318127dfdde89</string>
 </dict>
 </plist>

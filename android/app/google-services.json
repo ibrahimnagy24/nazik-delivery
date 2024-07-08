@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "721458202222",
-    "project_id": "nazik-delivery",
-    "storage_bucket": "nazik-delivery.appspot.com"
+    "project_number": "18321061676",
+    "project_id": "nazik-5da2e",
+    "storage_bucket": "nazik-5da2e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:721458202222:android:15fbeb11a204ceeae1487f",
+        "mobilesdk_app_id": "1:18321061676:android:6d0db96961b8cc24fdde89",
         "android_client_info": {
           "package_name": "com.nazik.delivery"
         }
@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAu3aikNDjDZCITYvtXlHmrKMxUtPilfLw"
+          "current_key": "AIzaSyAi6L7GMQ3L0jIvo3zPBgnNQmMZHQ19qqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18321061676:android:c070339b71dde588fdde89",
+        "android_client_info": {
+          "package_name": "com.nazik.purchase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi6L7GMQ3L0jIvo3zPBgnNQmMZHQ19qqM"
         }
       ],
       "services": {

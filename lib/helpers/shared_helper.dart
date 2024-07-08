@@ -29,6 +29,7 @@ class CachingKey extends Enum<String> {
   static const CachingKey USER_SECOND = CachingKey('USER_SECOND');
   static const CachingKey USER_MINUTE = CachingKey('USER_MINUTE');
   static const CachingKey USER_HOURS = CachingKey('USER_HOURS');
+  static const CachingKey DEVICE_TOKEN = CachingKey('DEVICE_TOKEN');
 }
 
 class SharedHelper {

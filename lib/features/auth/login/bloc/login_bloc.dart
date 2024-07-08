@@ -30,8 +30,9 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<void> onClick(AppEvent event, Emitter emit) async {
-    emit(Loading());
     try {
+      emit(Loading());
+
       Response res = await LoginRepo.login(
         password: passwordTEC.text.trim(),
         username: mailTEC.text.trim(),
@@ -52,6 +53,7 @@ class LoginBloc extends Bloc<AppEvent, AppState> {
             ),
           );
           CustomNavigator.push(Routes.MAIN_PAGE, clean: true);
+          clear();
           emit(Done());
         } else {
           AppCore.showSnackBar(

@@ -83,7 +83,6 @@ class OtpView extends StatelessWidget {
                           SizedBox(height: 16.h),
                           CustomBtn(
                             text: allTranslations.text("go_to_login"),
-                            loading: state is Loading,
                             borderColor: Styles.BORDER_COLOR,
                             color: Styles.WHITE_COLOR,
                             textColor: Styles.PRIMARY_COLOR,

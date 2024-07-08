@@ -9,23 +9,23 @@ abstract class ApiNames {
   ///Profile
   static const profile = "profile";
   static const editProfile = "profile/edit";
+
   ///Requests
   static const requests = "orders";
   static requestDetails(id) => "orders/$id";
+  static assignRequest(id) => "assign-order/$id";
 
   static const purchase = "purchase";
   static const updateRequestStatus = "cancel/item";
-
 
   ///Notifications
   static const notifications = "notifications";
   static readNotifications(id) => "notifications/read/$id";
 
-
   ///Static Pages
   static const policy = "policy";
   static const terms = "terms";
+
   ///Log Out
   static const logout = "logout";
-
 }

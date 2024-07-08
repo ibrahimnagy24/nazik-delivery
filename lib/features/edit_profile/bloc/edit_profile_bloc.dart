@@ -82,7 +82,6 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
           SharedHelper.sharedHelper!
               .writeData(CachingKey.USER, json.encode(model.toJson()));
           UserBloc.instance.add(Click());
-          clear();
           emit(Done());
         } else {
           AppCore.showSnackBar(

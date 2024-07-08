@@ -5,7 +5,7 @@ import 'package:flutter_base/widgets/item_card.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/text_styles.dart';
 import '../../../helpers/translation/all_translation.dart';
-import '../../../model/items_model.dart';
+import '../../../model/requests_model.dart';
 
 class RequestItems extends StatelessWidget {
   const RequestItems({super.key, required this.items});

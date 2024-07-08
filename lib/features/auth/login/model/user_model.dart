@@ -8,7 +8,7 @@ class UserModel extends SingleMapper {
   String? email;
   String? phone;
   String? countryCode;
-  int? isActive;
+  bool? isActive;
   String? createdAt;
   int? roleId;
   String? roleName;
@@ -17,18 +17,18 @@ class UserModel extends SingleMapper {
 
   UserModel(
       {this.id,
-      this.token,
-      this.balance,
-      this.name,
-      this.email,
-      this.phone,
-      this.countryCode,
-      this.isActive,
-      this.createdAt,
-      this.roleId,
-      this.roleName,
-      this.emailSignature,
-      this.profilePhoto});
+        this.token,
+        this.balance,
+        this.name,
+        this.email,
+        this.phone,
+        this.countryCode,
+        this.isActive,
+        this.createdAt,
+        this.roleId,
+        this.roleName,
+        this.emailSignature,
+        this.profilePhoto});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -6,7 +6,7 @@ import '../../../core/app_notification.dart';
 import '../../../core/app_state.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
-import '../../../model/items_model.dart';
+import '../../../model/requests_model.dart';
 import '../repo/request_details_repo.dart';
 
 class RequestDetailsBloc extends Bloc<AppEvent, AppState> {
@@ -20,8 +20,11 @@ class RequestDetailsBloc extends Bloc<AppEvent, AppState> {
 
       Response res =
           await RequestDetailsRepo.requestDetails(event.arguments as int);
-      if (res.statusCode == 200 && res.data != null) {
-        RequestModel model = RequestModel.fromJson(res.data["data"]);
+      if (res.statusCode == 200 &&
+          res.data != null &&
+          res.data["data"] != null &&
+          res.data["data"].isNotEmpty) {
+        RequestModel model = RequestModel.fromJson(res.data["data"][0]);
         emit(Done(model: model));
       } else {
         emit(Error());

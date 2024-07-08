@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/config/colors/light_colors.dart';
@@ -14,6 +15,8 @@ import 'features/home/bloc/home_requests_bloc.dart';
 import 'features/my_requests/bloc/my_requests_bloc.dart';
 import 'features/notifications/bloc/notifications_bloc.dart';
 import 'features/splash/splash_bloc.dart';
+import 'firebase_options.dart';
+import 'helpers/notification_helper/notification_helper.dart';
 import 'helpers/styles.dart';
 import 'bloc/user_bloc.dart';
 import 'navigation/custom_navigation.dart';
@@ -21,7 +24,11 @@ import 'navigation/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SharedHelper.init();
+  FirebaseNotifications.setUpFirebase();
   await allTranslations.init();
   runApp(const MyApp());
 }

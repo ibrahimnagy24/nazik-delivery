@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/bloc/main_app_bloc.dart';
 
-import '../model/items_model.dart';
+import '../model/requests_model.dart';
 
 abstract class Styles {
   static const Color RED_CHART_COLOR = Color(0xffE24F4F);
@@ -126,9 +126,9 @@ abstract class Styles {
   static Color requestStatus(RequestStatus? status) {
     if (status == RequestStatus.inProgress) {
       return PENDING;
-    } else if (status == RequestStatus.picked) {
+    } else if (status == RequestStatus.outForDelivery) {
       return HEADER;
-    } else if (status == RequestStatus.done) {
+    } else if (status == RequestStatus.completed) {
       return ACTIVE;
     } else {
       return WHITE_COLOR;

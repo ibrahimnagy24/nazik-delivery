@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../components/animated_widget.dart';
 import '../../../../components/custom_btn.dart';
-import '../../../../components/custom_images.dart';
 import '../../../../components/custom_text_field.dart';
 import '../../../../core/app_event.dart';
 import '../../../../core/app_state.dart';
@@ -36,7 +35,6 @@ class ForgetPasswordView extends StatelessWidget {
                         data: [
                           SizedBox(height: 32.h),
                           Center(child: Styles.logo(width: 150, height: 150)),
-
                           SizedBox(height: 32.h),
                           Text(
                             allTranslations.text("forget_password"),
@@ -78,7 +76,6 @@ class ForgetPasswordView extends StatelessWidget {
                           SizedBox(height: 16.h),
                           CustomBtn(
                             text: allTranslations.text("go_to_login"),
-                            loading: state is Loading,
                             borderColor: Styles.BORDER_COLOR,
                             color: Styles.WHITE_COLOR,
                             textColor: Styles.PRIMARY_COLOR,

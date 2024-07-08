@@ -26,6 +26,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
 
   @override
   void initState() {
+    initData();
     _index = widget.index;
     super.initState();
   }

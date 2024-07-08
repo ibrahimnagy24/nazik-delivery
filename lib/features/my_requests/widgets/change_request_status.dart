@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/components/custom_btn.dart';
 import 'package:flutter_base/core/app_state.dart';
-import 'package:flutter_base/model/items_model.dart';
+import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +13,7 @@ import '../bloc/update_request_status_bloc.dart';
 
 class ChangeRequestStatus extends StatelessWidget {
   const ChangeRequestStatus(
-      {super.key, required this.id, required this.status});
+      {super.key, required this.id,  this.status});
   final RequestStatus? status;
   final int? id;
 

@@ -3,7 +3,7 @@ import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_base/widgets/tab_widget.dart';
 
 import '../../../helpers/translation/all_translation.dart';
-import '../../../model/items_model.dart';
+import '../../../model/requests_model.dart';
 import '../bloc/my_requests_bloc.dart';
 
 class RequestsTabs extends StatelessWidget {

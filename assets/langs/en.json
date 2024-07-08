@@ -142,6 +142,10 @@
   "request_details": "Request Details",
   "order_id": "Order ID",
   "deliver": "Deliver",
-  "invalid_credentials": "Invalid Credentials"
+  "invalid_credentials": "Invalid Credentials",
+  "there_is_no_data": "There is no data",
+  "loading": "Loading",
+  "your_password_has_been_reset_successfully": "You password has been reset successfully!",
+  "assign_request": "Assign Request"
 
 }

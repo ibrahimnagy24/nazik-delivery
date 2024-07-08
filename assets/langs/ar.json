@@ -117,5 +117,9 @@
   "request_details": "تفاصيل الطلب",
   "order_id": "رقم الطلب",
   "deliver": "توصيل",
-  "invalid_credentials": "بيانات الدخول غير صحيحة"
+  "invalid_credentials": "بيانات الدخول غير صحيحة",
+  "there_is_no_data": "لا توجد بيانات",
+  "loading": "جارٍ التحميل",
+  "your_password_has_been_reset_successfully":"تم تعيين كلمة المرور بنجاح!",
+  "assign_request": "تعيين الطلب"
 }

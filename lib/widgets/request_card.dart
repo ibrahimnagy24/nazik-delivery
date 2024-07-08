@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/helpers/styles.dart';
 import 'package:flutter_base/helpers/text_styles.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
-import 'package:flutter_base/model/items_model.dart';
+import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/navigation/custom_navigation.dart';
 import 'package:flutter_base/navigation/routes.dart';
 import 'package:flutter_base/utility/extensions.dart';
@@ -35,21 +35,11 @@ class RequestCard extends StatelessWidget {
             Row(
               children: [
                 Expanded(
-                  child: RichText(
-                    textAlign: TextAlign.start,
-                    text: TextSpan(
-                      text: "${allTranslations.text("order_id")}: ",
-                      style: AppTextStyles.w600
-                          .copyWith(fontSize: 14, color: Styles.HEADER),
-                      children: [
-                        TextSpan(
-                          text: "#10",
-                          style: AppTextStyles.w400.copyWith(
-                            fontSize: 14,
-                            color: Styles.SUB_HEADER,
-                          ),
-                        )
-                      ],
+                  child: Text(
+                    "#${model?.orderNumber}",
+                    style: AppTextStyles.w600.copyWith(
+                      fontSize: 14,
+                      color: Styles.HEADER,
                     ),
                   ),
                 ),
@@ -80,30 +70,31 @@ class RequestCard extends StatelessWidget {
             ),
 
             ///Products
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 2.h),
-              child: RichText(
-                textAlign: TextAlign.start,
-                text: TextSpan(
-                  text: "${allTranslations.text("products")}: ",
-                  style: AppTextStyles.w600
-                      .copyWith(fontSize: 14, color: Styles.HEADER),
-                  children: [
-                    TextSpan(
-                      text: model?.items
-                              ?.map((e) => e.name)
-                              .toList()
-                              .join(", ") ??
-                          "",
-                      style: AppTextStyles.w400.copyWith(
-                        fontSize: 14,
-                        color: Styles.SUB_HEADER,
-                      ),
-                    )
-                  ],
+            if (model?.items != null && model!.items!.isNotEmpty)
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 2.h),
+                child: RichText(
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    text: "${allTranslations.text("products")}: ",
+                    style: AppTextStyles.w600
+                        .copyWith(fontSize: 14, color: Styles.HEADER),
+                    children: [
+                      TextSpan(
+                        text: model?.items
+                                ?.map((e) => e.title)
+                                .toList()
+                                .join(", ") ??
+                            "",
+                        style: AppTextStyles.w400.copyWith(
+                          fontSize: 14,
+                          color: Styles.SUB_HEADER,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
 
             ///Phone Number
             if (fromMyRequest)
@@ -117,7 +108,7 @@ class RequestCard extends StatelessWidget {
                         .copyWith(fontSize: 14, color: Styles.HEADER),
                     children: [
                       TextSpan(
-                        text: model?.phoneNumber ?? "01010101010",
+                        text: model?.mobileNumber ?? "01010101010",
                         style: AppTextStyles.w400.copyWith(
                           fontSize: 14,
                           color: Styles.SUB_HEADER,
@@ -137,7 +128,7 @@ class RequestCard extends StatelessWidget {
                     .copyWith(fontSize: 14, color: Styles.HEADER),
                 children: [
                   TextSpan(
-                    text: "www.zara.com",
+                    text: model?.address ?? "",
                     style: AppTextStyles.w400.copyWith(
                       fontSize: 14,
                       color: Styles.SUB_HEADER,
@@ -151,7 +142,7 @@ class RequestCard extends StatelessWidget {
               ),
             ),
 
-            if (fromMyRequest && model?.status != RequestStatus.done)
+            if (fromMyRequest && model?.status != RequestStatus.completed)
               ChangeRequestStatus(
                 id: model?.id,
                 status: model?.status,

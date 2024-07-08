@@ -11,8 +11,8 @@ import '../../../components/empty_container.dart';
 import '../../../core/app_event.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/text_styles.dart';
-import '../../../model/items_model.dart';
-import '../../my_requests/bloc/update_request_status_bloc.dart';
+import '../../../model/requests_model.dart';
+import '../bloc/assign_request_bloc.dart';
 import '../bloc/request_details_bloc.dart';
 import '../widgets/request_items.dart';
 
@@ -29,7 +29,7 @@ class RequestDetailsView extends StatelessWidget {
       ),
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => RequestDetailsBloc(),
+          create: (context) => RequestDetailsBloc()..add(Click(arguments: id)),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Column(
@@ -41,21 +41,11 @@ class RequestDetailsView extends StatelessWidget {
                       RequestModel model = state.model as RequestModel;
                       return ListAnimator(
                         data: [
-                          RichText(
-                            textAlign: TextAlign.start,
-                            text: TextSpan(
-                              text: "${allTranslations.text("order_id")}: ",
-                              style: AppTextStyles.w600
-                                  .copyWith(fontSize: 14, color: Styles.HEADER),
-                              children: [
-                                TextSpan(
-                                  text: "#10",
-                                  style: AppTextStyles.w400.copyWith(
-                                    fontSize: 14,
-                                    color: Styles.SUB_HEADER,
-                                  ),
-                                )
-                              ],
+                          Text(
+                            "#${model.orderNumber}",
+                            style: AppTextStyles.w600.copyWith(
+                              fontSize: 14,
+                              color: Styles.HEADER,
                             ),
                           ),
 
@@ -118,89 +108,34 @@ class RequestDetailsView extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return ListAnimator(
-                        data: [
-                          RichText(
-                            textAlign: TextAlign.start,
-                            text: TextSpan(
-                              text: "${allTranslations.text("order_id")}: ",
-                              style: AppTextStyles.w600
-                                  .copyWith(fontSize: 14, color: Styles.HEADER),
-                              children: [
-                                TextSpan(
-                                  text: "#10",
-                                  style: AppTextStyles.w400.copyWith(
-                                    fontSize: 14,
-                                    color: Styles.SUB_HEADER,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-
-                          ///Address
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 2.h),
-                            child: RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                text: "${allTranslations.text("address")}: ",
-                                style: AppTextStyles.w600.copyWith(
-                                    fontSize: 14, color: Styles.HEADER),
-                                children: [
-                                  TextSpan(
-                                    text: "Egypt",
-                                    style: AppTextStyles.w400.copyWith(
-                                      fontSize: 14,
-                                      color: Styles.SUB_HEADER,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-
-                          ///Items
-                          RequestItems(
-                            items: [
-                              ItemModel(
-                                  id: 1,
-                                  color: "red",
-                                  name: "T-shirt",
-                                  price: "240",
-                                  link: "www.zara.com",
-                                  quantity: "3",
-                                  size: "L"),
-                              ItemModel(
-                                  id: 2,
-                                  color: "red",
-                                  name: "T-shirt",
-                                  price: "240",
-                                  link: "www.zara.com",
-                                  quantity: "3",
-                                  size: "L"),
-                            ],
-                          ),
-                        ],
-                      );
+                      return const SizedBox();
                     }
                   },
                 )),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 12.h),
-                  child: BlocProvider(
-                    create: (context) => UpdateRequestStatusBloc(),
-                    child: BlocBuilder<UpdateRequestStatusBloc, AppState>(
-                      builder: (context, state) {
-                        return CustomBtn(
-                          text: allTranslations.text("deliver"),
-                          onPressed: () => context
-                              .read<UpdateRequestStatusBloc>()
-                              .add(Click(arguments: {"id": id, "status": 1})),
-                        );
-                      },
-                    ),
-                  ),
+                BlocBuilder<RequestDetailsBloc, AppState>(
+                  builder: (context, state) {
+                    if (state is Done) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12.h),
+                        child: BlocProvider(
+                          create: (context) => AssignRequestBloc(),
+                          child: BlocBuilder<AssignRequestBloc, AppState>(
+                            builder: (context, state) {
+                              return CustomBtn(
+                                text: allTranslations.text("assign_request"),
+                                loading: state is Loading,
+                                onPressed: () => context
+                                    .read<AssignRequestBloc>()
+                                    .add(Click(arguments: id)),
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
                 ),
               ],
             ),

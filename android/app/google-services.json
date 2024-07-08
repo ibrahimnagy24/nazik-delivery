@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "721458202222",
+    "project_id": "nazik-delivery",
+    "storage_bucket": "nazik-delivery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721458202222:android:15fbeb11a204ceeae1487f",
+        "android_client_info": {
+          "package_name": "com.nazik.delivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAu3aikNDjDZCITYvtXlHmrKMxUtPilfLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

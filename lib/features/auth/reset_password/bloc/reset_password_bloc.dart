@@ -33,9 +33,12 @@ class ResetPasswordBloc extends Bloc<AppEvent, AppState> {
       Map<String, dynamic> data = {
         "email": event.arguments as String,
         "password": passwordTEC.text.trim(),
+        "password_confirmation": confirmPasswordTEC.text.trim(),
       };
       Response res = await ResetPasswordRepo.resetPassword(data);
       if (res.statusCode == 200) {
+        Future.delayed(const Duration(seconds: 1), () => clear());
+
         AppCore.showSnackBar(
             notification: AppNotification(
                 message: allTranslations

@@ -3,8 +3,6 @@ import 'package:flutter_base/components/animated_widget.dart';
 import 'package:flutter_base/components/custom_app_bar.dart';
 import 'package:flutter_base/components/empty_container.dart';
 import 'package:flutter_base/components/shimmer/custom_shimmer.dart';
-import 'package:flutter_base/features/notifications/model/notifications_model.dart';
-import 'package:flutter_base/features/notifications/widgets/notifications_card.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +44,6 @@ class _NotificationsViewState extends State<NotificationsView> {
       appBar: CustomAppBar(
         title: allTranslations.text("notifications"),
         withBack: false,
-
       ),
       body: Column(
         children: [
@@ -121,27 +118,7 @@ class _NotificationsViewState extends State<NotificationsView> {
                     ),
                   );
                 }
-                return RefreshIndicator(
-                  color: Styles.PRIMARY_COLOR,
-                  onRefresh: () async {
-                    NotificationsBloc.instance
-                        .add(Click(arguments: SearchEngine()));
-                  },
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListAnimator(
-                          data: List.generate(
-                            4,
-                            (index) => NotificationCard(
-                              notification: NotificationModel(),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+                return const SizedBox();
               },
             ),
           ),

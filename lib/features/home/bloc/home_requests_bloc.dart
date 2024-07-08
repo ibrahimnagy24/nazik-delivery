@@ -7,7 +7,7 @@ import '../../../core/app_notification.dart';
 import '../../../core/app_state.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
-import '../../../model/items_model.dart';
+import '../../../model/requests_model.dart';
 import '../../../model/search_engine.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../repo/home_repo.dart';
@@ -19,6 +19,7 @@ class HomeRequestsBloc extends Bloc<AppEvent, AppState> {
 
   HomeRequestsBloc() : super(Start()) {
     on<Click>(onClick);
+    on<Update>(onUpdate);
   }
 
   late SearchEngine _engine;
@@ -68,6 +69,18 @@ class HomeRequestsBloc extends Bloc<AppEvent, AppState> {
               borderColor: Styles.DARK_RED,
               iconName: "fill-close-circle"));
       emit(Error());
+    }
+  }
+
+  ///Update Cards When Delete a card
+  Future<void> onUpdate(Update event, Emitter<AppState> emit) async {
+    _cards.removeWhere((e) =>
+        (e.key as ValueKey<int?>).value ==
+        ValueKey(event.arguments as int).value);
+    if (_cards.isNotEmpty) {
+      emit(Done(cards: _cards));
+    } else {
+      emit(Empty());
     }
   }
 }

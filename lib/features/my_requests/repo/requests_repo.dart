@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_base/model/search_engine.dart';
 
 import '../../../config/api_names.dart';
-import '../../../model/items_model.dart';
+import '../../../model/requests_model.dart';
 import '../../../network/network_layer.dart';
 
 abstract class MyRequestsRepo {

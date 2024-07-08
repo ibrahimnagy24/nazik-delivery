@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../components/animated_widget.dart';
 import '../../../../components/custom_btn.dart';
 import '../../../../components/custom_text_field.dart';
+import '../../../../core/app_event.dart';
 import '../../../../core/app_state.dart';
 import '../../../../core/validator.dart';
 import '../../../../helpers/styles.dart';
@@ -23,7 +24,7 @@ class Login extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => LoginBloc(),
+          create: (context) => LoginBloc()..clear(),
           child: BlocBuilder<LoginBloc, AppState>(
             builder: (context, state) {
               return Padding(
@@ -84,8 +85,7 @@ class Login extends StatelessWidget {
                               .globalKey
                               .currentState!
                               .validate()) {
-                            // context.read<LoginBloc>().add(Click());
-                            CustomNavigator.push(Routes.MAIN_PAGE, clean: true);
+                            context.read<LoginBloc>().add(Click());
                           }
                         },
                       ),

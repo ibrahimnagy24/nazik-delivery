@@ -3,7 +3,7 @@ import 'package:flutter_base/components/animated_widget.dart';
 import 'package:flutter_base/components/empty_container.dart';
 import 'package:flutter_base/components/shimmer/custom_shimmer.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
-import 'package:flutter_base/model/items_model.dart';
+import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -89,9 +89,6 @@ class _HomeBodyState extends State<HomeBody> {
                     child: ListAnimator(
                       customPadding: EdgeInsets.symmetric(horizontal: 16.w),
                       data: [
-                        SizedBox(
-                          height: 50.h,
-                        ),
                         EmptyContainer(
                           txt: state is Error
                               ? allTranslations.text("something_went_wrong")
@@ -122,7 +119,7 @@ class _HomeBodyState extends State<HomeBody> {
                             ItemModel(
                                 id: 1,
                                 color: "red",
-                                name: "T-shirt",
+                                title: "T-shirt",
                                 price: "240",
                                 link: "www.zara.com",
                                 quantity: "3",
@@ -130,7 +127,7 @@ class _HomeBodyState extends State<HomeBody> {
                             ItemModel(
                                 id: 2,
                                 color: "red",
-                                name: "T-shirt",
+                                title: "T-shirt",
                                 price: "240",
                                 link: "www.zara.com",
                                 quantity: "3",

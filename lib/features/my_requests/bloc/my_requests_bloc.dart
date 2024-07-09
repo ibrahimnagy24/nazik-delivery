@@ -12,7 +12,7 @@ import '../../../helpers/translation/all_translation.dart';
 import '../../../model/requests_model.dart';
 import '../../../model/search_engine.dart';
 import '../../../navigation/custom_navigation.dart';
-import '../../../widgets/request_card.dart';
+import '../widgets/request_card.dart';
 
 class MyRequestsBloc extends Bloc<AppEvent, AppState> {
   static MyRequestsBloc get instance =>
@@ -20,6 +20,7 @@ class MyRequestsBloc extends Bloc<AppEvent, AppState> {
 
   MyRequestsBloc() : super(Start()) {
     updateSelectStatus(RequestStatus.inProgress);
+    on<Update>(onUpdate);
     on<Click>(onClick);
   }
 
@@ -57,8 +58,7 @@ class MyRequestsBloc extends Bloc<AppEvent, AppState> {
       if (model.status == 200) {
         if (model.requests!.isNotEmpty) {
           for (var v in model.requests!) {
-            _cards.add(RequestCard(
-                key: ValueKey(v.id), fromMyRequest: true, model: v));
+            _cards.add(RequestCard(key: ValueKey(v.id), model: v));
           }
           _engine.maxPages = model.meta?.lastPage ?? 1;
           _engine.updateCurrentPage(model.meta?.currPage ?? 1);

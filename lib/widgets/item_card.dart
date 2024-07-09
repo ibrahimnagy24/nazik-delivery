@@ -30,6 +30,7 @@ class ItemCard extends StatelessWidget {
         child: Row(
           children: [
             CustomNetworkImage.containerNewWorkImage(
+              image: model?.image??"",
                 height: 80, width: 80, fit: BoxFit.cover),
             Expanded(
               child: Padding(

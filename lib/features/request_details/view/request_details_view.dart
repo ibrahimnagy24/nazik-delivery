@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/components/animated_widget.dart';
 import 'package:flutter_base/components/custom_app_bar.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_base/core/app_state.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../components/custom_btn.dart';
 import '../../../components/empty_container.dart';
@@ -12,6 +14,7 @@ import '../../../core/app_event.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/text_styles.dart';
 import '../../../model/requests_model.dart';
+import '../../my_requests/widgets/change_request_status.dart';
 import '../bloc/assign_request_bloc.dart';
 import '../bloc/request_details_bloc.dart';
 import '../widgets/request_items.dart';
@@ -41,17 +44,20 @@ class RequestDetailsView extends StatelessWidget {
                       RequestModel model = state.model as RequestModel;
                       return ListAnimator(
                         data: [
-                          Text(
-                            "#${model.orderNumber}",
-                            style: AppTextStyles.w600.copyWith(
-                              fontSize: 14,
-                              color: Styles.HEADER,
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 6.h),
+                            child: Text(
+                              "#${model.orderNumber}",
+                              style: AppTextStyles.w600.copyWith(
+                                fontSize: 14,
+                                color: Styles.HEADER,
+                              ),
                             ),
                           ),
 
                           ///Address
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 12.h),
+                            padding: EdgeInsets.symmetric(vertical: 6.h),
                             child: RichText(
                               textAlign: TextAlign.start,
                               text: TextSpan(
@@ -70,6 +76,80 @@ class RequestDetailsView extends StatelessWidget {
                               ),
                             ),
                           ),
+
+                          if ((model.deposit ?? 0) > 0)
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 6.h),
+                              child: RichText(
+                                textAlign: TextAlign.start,
+                                text: TextSpan(
+                                  text:
+                                      "${allTranslations.text("deposit_value")}: ",
+                                  style: AppTextStyles.w600.copyWith(
+                                      fontSize: 14, color: Styles.HEADER),
+                                  children: [
+                                    TextSpan(
+                                      text: "${model.deposit ?? 0} \$",
+                                      style: AppTextStyles.w400.copyWith(
+                                        fontSize: 14,
+                                        color: Styles.SUB_HEADER,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                          ///Phone Number
+                          if (model.employeeId != null)
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 6.h),
+                              child: RichText(
+                                textAlign: TextAlign.start,
+                                text: TextSpan(
+                                  text: "${allTranslations.text("phone")}: ",
+                                  style: AppTextStyles.w600.copyWith(
+                                      fontSize: 14, color: Styles.HEADER),
+                                  children: [
+                                    TextSpan(
+                                        text: model.mobileNumber ?? "",
+                                        style: AppTextStyles.w400.copyWith(
+                                            fontSize: 14,
+                                            color: Colors.blueAccent,
+                                            decoration:
+                                                TextDecoration.underline),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () async {
+                                            launchUrl(Uri.parse(
+                                                'tel: ${model.mobileNumber}'));
+                                          })
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                          ///Address
+                          if (model.employeeId != null)
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 6.h),
+                              child: RichText(
+                                textAlign: TextAlign.start,
+                                text: TextSpan(
+                                  text: "${allTranslations.text("address")}: ",
+                                  style: AppTextStyles.w600.copyWith(
+                                      fontSize: 14, color: Styles.HEADER),
+                                  children: [
+                                    TextSpan(
+                                      text: model.address ?? "",
+                                      style: AppTextStyles.w400.copyWith(
+                                        fontSize: 14,
+                                        color: Styles.SUB_HEADER,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
 
                           ///Items
                           RequestItems(items: model.items),
@@ -115,22 +195,30 @@ class RequestDetailsView extends StatelessWidget {
                 BlocBuilder<RequestDetailsBloc, AppState>(
                   builder: (context, state) {
                     if (state is Done) {
+                      RequestModel model = state.model as RequestModel;
                       return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12.h),
-                        child: BlocProvider(
-                          create: (context) => AssignRequestBloc(),
-                          child: BlocBuilder<AssignRequestBloc, AppState>(
-                            builder: (context, state) {
-                              return CustomBtn(
-                                text: allTranslations.text("assign_request"),
-                                loading: state is Loading,
-                                onPressed: () => context
-                                    .read<AssignRequestBloc>()
-                                    .add(Click(arguments: id)),
-                              );
-                            },
-                          ),
-                        ),
+                        padding: EdgeInsets.symmetric(vertical: 18.h),
+                        child: model.employeeId == null
+                            ? BlocProvider(
+                                create: (context) => AssignRequestBloc(),
+                                child: BlocBuilder<AssignRequestBloc, AppState>(
+                                  builder: (context, state) {
+                                    return CustomBtn(
+                                      text: allTranslations
+                                          .text("assign_request"),
+                                      loading: state is Loading,
+                                      onPressed: () => context
+                                          .read<AssignRequestBloc>()
+                                          .add(Click(arguments: id)),
+                                    );
+                                  },
+                                ),
+                              )
+                            : ChangeRequestStatus(
+                                id: model.id,
+                                status: model.status!,
+                                fromRequestDetails: true,
+                              ),
                       );
                     } else {
                       return const SizedBox();

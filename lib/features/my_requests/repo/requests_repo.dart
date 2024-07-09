@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_base/bloc/user_bloc.dart';
 import 'package:flutter_base/model/search_engine.dart';
 
 import '../../../config/api_names.dart';
@@ -11,7 +12,12 @@ abstract class MyRequestsRepo {
     return await Network().request(
       ApiNames.requests,
       query: {
-        "filter": status.name,
+        "status": status == RequestStatus.inProgress
+            ? status.name
+            : status == RequestStatus.outForDelivery
+                ? "out_for_delivery"
+                : status.name,
+        "employee_id": UserBloc.instance.user?.id,
         "page": data.currentPage + 1,
         "limit": data.limit,
       },
@@ -20,9 +26,14 @@ abstract class MyRequestsRepo {
     );
   }
 
+  static Future<dynamic> unAssignRequest(id) async {
+    return await Network()
+        .request(ApiNames.unAssignRequest(id), method: ServerMethods.POST);
+  }
+
   static Future<Response> updateRequestStatus(data) async {
     return await Network().request(
-      ApiNames.updateRequestStatus,
+      ApiNames.updateRequestStatus(data["id"]),
       body: FormData.fromMap(data),
       method: ServerMethods.POST,
     );

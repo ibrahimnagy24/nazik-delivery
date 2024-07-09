@@ -18,7 +18,7 @@ class RequestItems extends StatelessWidget {
       children: [
         ///Title
         Padding(
-          padding: EdgeInsets.symmetric(vertical: 12.h),
+          padding: EdgeInsets.symmetric(vertical: 6.h),
           child: Text(
             allTranslations.text("products"),
             style: AppTextStyles.w600.copyWith(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_base/components/animated_widget.dart';
 import 'package:flutter_base/components/empty_container.dart';
 import 'package:flutter_base/components/shimmer/custom_shimmer.dart';
-import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +11,6 @@ import '../../../core/app_event.dart';
 import '../../../core/app_state.dart';
 import '../../../helpers/styles.dart';
 import '../../../model/search_engine.dart';
-import '../../../widgets/request_card.dart';
 import '../bloc/my_requests_bloc.dart';
 
 class RequestsBody extends StatefulWidget {
@@ -104,48 +102,7 @@ class _RequestsBodyState extends State<RequestsBody> {
               ),
             );
           }
-          return RefreshIndicator(
-            color: Styles.PRIMARY_COLOR,
-            onRefresh: () async {
-              MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
-            },
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListAnimator(
-                    data: List.generate(
-                      3,
-                      (index) => RequestCard(
-                        fromMyRequest: true,
-                        model: RequestModel(
-                          id: index,
-                          status: RequestStatus.values[index],
-                          items: [
-                            ItemModel(
-                                id: 1,
-                                color: "red",
-                                title: "T-shirt",
-                                price: "240",
-                                link: "www.zara.com",
-                                quantity: "3",
-                                size: "L"),
-                            ItemModel(
-                                id: 2,
-                                color: "red",
-                                title: "T-shirt",
-                                price: "240",
-                                link: "www.zara.com",
-                                quantity: "3",
-                                size: "L"),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
+          return const SizedBox();
         },
       ),
     );

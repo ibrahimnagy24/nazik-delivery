@@ -105,7 +105,7 @@
   "inProgress": "قيد التنفيذ",
   "picked": "تم الاستلام",
   "pick_up": "استلام",
-  "done": "تم التوصيل",
+  "completed": "تم التوصيل",
   "canceled": "ملغى",
   "request_id": "رقم الطلب",
   "cost": "التكلفة",
@@ -127,5 +127,9 @@
   "city": "المدينة",
   "order_delivery": "توصيل طلبات",
   "receiving_a_deposit": "استلام عربون",
-  "order_assigned_successfully": "تم تعيين الطلب بنجاح!"
+  "deposit_value": "قيمة العربون",
+  "order_assigned_successfully": "تم تعيين الطلب بنجاح!",
+  "order_unassigned_successfully": "تم إلغاء الطلب بنجاح!",
+  "status_updated_successfully": "تم تحديث حالة الطلب بنجاح!",
+  "outForDelivery": "جاري التوصيل"
 }

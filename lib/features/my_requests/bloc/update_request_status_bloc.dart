@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_base/components/loading_dialog.dart';
+import 'package:flutter_base/navigation/custom_navigation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_base/core/app_core.dart';
 import 'package:flutter_base/core/app_event.dart';
@@ -6,6 +8,8 @@ import 'package:flutter_base/core/app_notification.dart';
 import 'package:flutter_base/core/app_state.dart';
 import '../../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
+import '../../../model/search_engine.dart';
+import '../../home/bloc/home_requests_bloc.dart';
 import '../repo/requests_repo.dart';
 import 'my_requests_bloc.dart';
 
@@ -15,20 +19,23 @@ class UpdateRequestStatusBloc extends Bloc<AppEvent, AppState> {
   }
 
   Future<void> onClick(AppEvent event, Emitter emit) async {
-    emit(Loading());
     try {
+      emit(Loading());
+      showLoadingDialog();
       Response res =
           await MyRequestsRepo.updateRequestStatus(event.arguments as Map);
+      CustomNavigator.pop();
       if (res.statusCode == 200) {
         AppCore.showSnackBar(
           notification: AppNotification(
-              message: allTranslations.text("item_deleted_successfully"),
+              message: allTranslations.text("status_updated_successfully"),
               backgroundColor: Styles.ACTIVE,
               borderColor: Styles.GREEN,
               isFloating: true),
         );
         MyRequestsBloc.instance
             .add(Update(arguments: (event.arguments as Map)["id"]));
+        HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
         emit(Done());
       } else {
         AppCore.showSnackBar(
@@ -42,6 +49,7 @@ class UpdateRequestStatusBloc extends Bloc<AppEvent, AppState> {
         emit(Error());
       }
     } catch (e) {
+      CustomNavigator.pop();
       AppCore.showSnackBar(
         notification: AppNotification(
           message: allTranslations.text("something_went_wrong"),

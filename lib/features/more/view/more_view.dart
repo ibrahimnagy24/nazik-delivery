@@ -37,11 +37,11 @@ class MoreView extends StatelessWidget {
                   icon: 'lock',
                   onTap: () => CustomNavigator.push(Routes.CHANGE_PASSWORD),
                 ),
-                MoreButton(
-                  title: allTranslations.text("language"),
-                  icon: 'global',
-                  // onTap: () => CustomNavigator.push(Routes.LANGUAGE),
-                ),
+                // MoreButton(
+                //   title: allTranslations.text("language"),
+                //   icon: 'global',
+                //   onTap: () => CustomNavigator.push(Routes.LANGUAGE),
+                // ),
                 MoreButton(
                   title: allTranslations.text("privacy_policy"),
                   icon: 'shield-tick',

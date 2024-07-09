@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_base/components/loading_dialog.dart';
 import 'package:flutter_base/navigation/custom_navigation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_base/core/app_core.dart';
@@ -7,33 +8,31 @@ import 'package:flutter_base/core/app_notification.dart';
 import 'package:flutter_base/core/app_state.dart';
 import '../../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
-import '../../../model/search_engine.dart';
-import '../../home/bloc/home_requests_bloc.dart';
-import '../../my_requests/bloc/my_requests_bloc.dart';
-import '../repo/request_details_repo.dart';
+import '../repo/requests_repo.dart';
+import 'my_requests_bloc.dart';
 
-class AssignRequestBloc extends Bloc<AppEvent, AppState> {
-  AssignRequestBloc() : super(Start()) {
+class UnAssignRequestBloc extends Bloc<AppEvent, AppState> {
+  UnAssignRequestBloc() : super(Start()) {
     on<Click>(onClick);
   }
 
   Future<void> onClick(AppEvent event, Emitter emit) async {
-    emit(Loading());
     try {
+      emit(Loading());
+      showLoadingDialog();
       Response res =
-          await RequestDetailsRepo.assignRequest(event.arguments as int);
+          await MyRequestsRepo.unAssignRequest(event.arguments as int);
+      CustomNavigator.pop();
       if (res.statusCode == 200) {
         AppCore.showSnackBar(
           notification: AppNotification(
-              message: allTranslations.text("order_assigned_successfully"),
+              message: allTranslations.text("order_unassigned_successfully"),
               backgroundColor: Styles.ACTIVE,
               borderColor: Styles.GREEN,
               isFloating: true),
         );
         CustomNavigator.pop();
-        HomeRequestsBloc.instance
-            .add(Update(arguments: event.arguments as int));
-        MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
+        MyRequestsBloc.instance.add(Update(arguments: event.arguments as int));
         emit(Done());
       } else {
         AppCore.showSnackBar(
@@ -47,6 +46,8 @@ class AssignRequestBloc extends Bloc<AppEvent, AppState> {
         emit(Error());
       }
     } catch (e) {
+      CustomNavigator.pop();
+
       AppCore.showSnackBar(
         notification: AppNotification(
           message: allTranslations.text("something_went_wrong"),

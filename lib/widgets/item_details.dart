@@ -20,7 +20,10 @@ class ItemDetails extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomNetworkImage.containerNewWorkImage(
-            height: 150, width: 150, fit: BoxFit.contain),
+            image: model?.image ?? "",
+            height: 150,
+            width: 150,
+            fit: BoxFit.contain),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
           child: Column(
@@ -206,7 +209,7 @@ class ItemDetails extends StatelessWidget {
 
               ///Link
               RichText(
-                 maxLines: 1,
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 text: TextSpan(
                   text: "${allTranslations.text("link")} ",
@@ -214,14 +217,14 @@ class ItemDetails extends StatelessWidget {
                       .copyWith(fontSize: 14, color: Styles.HEADER),
                   children: [
                     TextSpan(
-                        text: model?.link ?? "www.zara.com",
+                        text: model?.link ?? "",
                         style: AppTextStyles.w400.copyWith(
                             fontSize: 14,
                             color: Colors.blueAccent,
                             decoration: TextDecoration.underline),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () async {
-                            launchUrl(Uri.parse("www.zara.com"));
+                            launchUrl(Uri.parse(model?.link ?? ""));
                           })
                   ],
                 ),

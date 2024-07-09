@@ -40,6 +40,7 @@ class RequestsModel extends SingleMapper {
 
 class RequestModel extends SingleMapper {
   int? id;
+  int? employeeId;
   String? address, mobileNumber, orderNumber;
   RequestStatus? status;
   double? deposit;
@@ -47,6 +48,7 @@ class RequestModel extends SingleMapper {
 
   RequestModel(
       {this.id,
+      this.employeeId,
       this.address,
       this.mobileNumber,
       this.orderNumber,
@@ -56,10 +58,12 @@ class RequestModel extends SingleMapper {
 
   RequestModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    employeeId = json['employee_id'];
     address = json['user_address'];
     mobileNumber = json['mobile_number'];
     orderNumber = json['number'];
-    deposit = json['deposit'] != null ? double.parse(json['deposit'].toString()) : 0;
+    deposit =
+        json['deposit'] != null ? double.parse(json['deposit'].toString()) : 0;
     if (json['items'] != null) {
       items = <ItemModel>[];
       json['items'].forEach((v) {
@@ -72,6 +76,7 @@ class RequestModel extends SingleMapper {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['employee_id'] = employeeId;
     data['mobile_number'] = mobileNumber;
     data['number'] = orderNumber;
     data['user_address'] = address;
@@ -115,6 +120,7 @@ class ItemModel extends SingleMapper {
 
   ItemModel(
       {this.id,
+      this.image,
       this.number,
       this.city,
       this.title,
@@ -139,6 +145,7 @@ class ItemModel extends SingleMapper {
   ItemModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     number = json['number']?.toString();
+    image = json['image'];
     city = json['city'];
     title = json['title'];
     link = json['link'];
@@ -163,6 +170,7 @@ class ItemModel extends SingleMapper {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['image'] = image;
     data['number'] = number;
     data['city'] = city;
     data['title'] = title;
@@ -196,6 +204,9 @@ enum RequestStatus { inProgress, outForDelivery, completed }
 
 _getRequestStatus(status) {
   if (status == "in_libya_warehouse") {
+    return RequestStatus.inProgress;
+  }
+  if (status == "deposit_payment_request") {
     return RequestStatus.inProgress;
   }
   if (status == "out_for_delivery") {

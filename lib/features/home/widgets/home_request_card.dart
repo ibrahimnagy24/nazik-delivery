@@ -38,12 +38,24 @@ class HomeRequestCard extends StatelessWidget {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 2.h),
+              padding: EdgeInsets.symmetric(vertical: 4.h),
               child: isDeposit
-                  ? Text(
-                      allTranslations.text("receiving_a_deposit"),
-                      style: AppTextStyles.w600
-                          .copyWith(fontSize: 14, color: Styles.HEADER),
+                  ? RichText(
+                      textAlign: TextAlign.start,
+                      text: TextSpan(
+                        text: "${allTranslations.text("deposit_value")}: ",
+                        style: AppTextStyles.w600
+                            .copyWith(fontSize: 14, color: Styles.HEADER),
+                        children: [
+                          TextSpan(
+                            text: "${model?.deposit ?? 0} \$",
+                            style: AppTextStyles.w400.copyWith(
+                              fontSize: 14,
+                              color: Styles.SUB_HEADER,
+                            ),
+                          )
+                        ],
+                      ),
                     )
                   : RichText(
                       textAlign: TextAlign.start,
@@ -74,7 +86,7 @@ class HomeRequestCard extends StatelessWidget {
               text: TextSpan(
                 text: "${allTranslations.text("address")}: ",
                 style: AppTextStyles.w600
-                    .copyWith(fontSize: 14, color: Styles.HEADER),
+                    .copyWith(fontSize: 14, color: Styles.HEADER, height: 1),
                 children: [
                   TextSpan(
                     text: model?.address ?? "",
@@ -82,10 +94,6 @@ class HomeRequestCard extends StatelessWidget {
                       fontSize: 14,
                       color: Styles.SUB_HEADER,
                     ),
-                    // recognizer: TapGestureRecognizer()
-                    //   ..onTap = () async {
-                    //     launchUrl(Uri.parse("www.zara.com"));
-                    //   },
                   )
                 ],
               ),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/core/app_state.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_base/widgets/tab_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/app_event.dart';
 import '../../../helpers/translation/all_translation.dart';
 import '../../../model/requests_model.dart';
+import '../../../model/search_engine.dart';
 import '../bloc/my_requests_bloc.dart';
 
 class RequestsTabs extends StatelessWidget {
@@ -13,25 +17,35 @@ class RequestsTabs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 16.h),
-      child: StreamBuilder<RequestStatus>(
-          stream: MyRequestsBloc.instance.selectStatusStream,
-          builder: (context, snapshot) {
-            return Row(
-              children: List.generate(
-                  RequestStatus.values.length,
-                  (index) => Expanded(
-                        child: TabWidget(
-                          data: allTranslations
-                              .text(RequestStatus.values[index].name),
-                          isSelected:
-                              RequestStatus.values[index] == snapshot.data,
-                          onClick: () => MyRequestsBloc.instance
-                              .updateSelectStatus(RequestStatus.values[index]),
-                          expand: true,
-                        ),
-                      )),
-            );
-          }),
+      child: BlocBuilder<MyRequestsBloc, AppState>(
+        builder: (context, state) {
+          return StreamBuilder<RequestStatus>(
+              stream: MyRequestsBloc.instance.selectStatusStream,
+              builder: (context, snapshot) {
+                return Row(
+                  children: List.generate(
+                      RequestStatus.values.length,
+                      (index) => Expanded(
+                            child: TabWidget(
+                              data: allTranslations
+                                  .text(RequestStatus.values[index].name),
+                              isSelected:
+                                  RequestStatus.values[index] == snapshot.data,
+                              onClick: () {
+                                if (state is! Loading) {
+                                  MyRequestsBloc.instance.updateSelectStatus(
+                                      RequestStatus.values[index]);
+                                  MyRequestsBloc.instance
+                                      .add(Click(arguments: SearchEngine()));
+                                }
+                              },
+                              expand: true,
+                            ),
+                          )),
+                );
+              });
+        },
+      ),
     );
   }
 }

@@ -146,6 +146,12 @@
   "there_is_no_data": "There is no data",
   "loading": "Loading",
   "your_password_has_been_reset_successfully": "You password has been reset successfully!",
-  "assign_request": "Assign Request"
+  "assign_request": "Assign Request",
+  "product_name": "Product Name",
+  "sub_category": "Type",
+  "city": "City",
+  "order_delivery": "Order Delivery",
+  "receiving_a_deposit": "Receiving a deposit",
+  "order_assigned_successfully": "Order assigned successfully!"
 
 }

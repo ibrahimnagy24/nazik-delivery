@@ -33,7 +33,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
 
   initData() {
     UserBloc.instance.add(Click());
-    HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
+    HomeRequestsBloc.instance.add(Click(arguments: SearchEngine(query: "public")));
     NotificationsBloc.instance.add(Click(arguments: SearchEngine()));
     MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
   }

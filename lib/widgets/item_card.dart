@@ -3,10 +3,10 @@ import 'package:flutter_base/components/custom_network_image.dart';
 import 'package:flutter_base/components/custom_simple_dialog.dart';
 import 'package:flutter_base/helpers/styles.dart';
 import 'package:flutter_base/helpers/text_styles.dart';
-import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import '../../../widgets/item_details.dart';
+import '../helpers/translation/all_translation.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({super.key, this.model});
@@ -22,7 +22,7 @@ class ItemCard extends StatelessWidget {
       },
       child: Container(
         height: 80,
-        margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+        margin: EdgeInsets.symmetric(vertical: 8.h),
         decoration: BoxDecoration(
             color: Styles.WHITE_COLOR,
             borderRadius: BorderRadius.circular(12),
@@ -48,28 +48,17 @@ class ItemCard extends StatelessWidget {
                     ),
 
                     ///Name
-                    Text(
-                      model?.title ?? "title",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.w400.copyWith(
-                        fontSize: 14,
-                        color: Styles.HEADER,
-                      ),
-                    ),
-
-                    ///Price
                     RichText(
                       text: TextSpan(
-                        text: "${allTranslations.text("price")} ",
+                        text: "${allTranslations.text("product_name")} ",
                         style: AppTextStyles.w400
                             .copyWith(fontSize: 14, color: Styles.SUB_HEADER),
                         children: [
                           TextSpan(
-                            text: "${model?.price}\$",
+                            text: model?.title ?? "name",
                             style: AppTextStyles.w600.copyWith(
                               fontSize: 14,
-                              color: Styles.PRIMARY_COLOR,
+                              color: Styles.HEADER,
                             ),
                           )
                         ],

@@ -26,28 +26,32 @@ class ItemDetails extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      "#${model?.number ?? "c"}",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.w600.copyWith(
-                        fontSize: 14,
-                        color: Styles.HEADER,
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                "#${model?.number ?? "c"}",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTextStyles.w600.copyWith(
+                  fontSize: 14,
+                  color: Styles.HEADER,
+                ),
               ),
+
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 2.h),
-                child: Text(
-                  model?.title ?? "title",
-                  style: AppTextStyles.w600.copyWith(
-                    fontSize: 16,
-                    color: Styles.HEADER,
+                child: RichText(
+                  text: TextSpan(
+                    text: "${allTranslations.text("product_name")} ",
+                    style: AppTextStyles.w400
+                        .copyWith(fontSize: 14, color: Styles.SUB_HEADER),
+                    children: [
+                      TextSpan(
+                        text: model?.title ?? "name",
+                        style: AppTextStyles.w600.copyWith(
+                          fontSize: 14,
+                          color: Styles.HEADER,
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -202,6 +206,8 @@ class ItemDetails extends StatelessWidget {
 
               ///Link
               RichText(
+                 maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 text: TextSpan(
                   text: "${allTranslations.text("link")} ",
                   style: AppTextStyles.w600

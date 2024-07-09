@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 import '../../../core/app_core.dart';
 import '../../../core/app_event.dart';
 import '../../../core/app_notification.dart';
@@ -11,19 +12,26 @@ import '../../../model/requests_model.dart';
 import '../../../model/search_engine.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../repo/home_repo.dart';
-import '../../../widgets/request_card.dart';
+import '../widgets/home_request_card.dart';
 
 class HomeRequestsBloc extends Bloc<AppEvent, AppState> {
   static HomeRequestsBloc get instance =>
       BlocProvider.of(CustomNavigator.navigatorState.currentContext!);
 
   HomeRequestsBloc() : super(Start()) {
+    updateSelectIndex(0);
     on<Click>(onClick);
     on<Update>(onUpdate);
   }
 
   late SearchEngine _engine;
   final List<Widget> _cards = [];
+
+  List<String> tabs = ["order_delivery", "receiving_a_deposit"];
+
+  final selectIndex = BehaviorSubject<int>();
+  Function(int) get updateSelectIndex => selectIndex.sink.add;
+  Stream<int> get selectIndexStream => selectIndex.stream.asBroadcastStream();
 
   customScroll(ScrollController controller) {
     controller.addListener(() {
@@ -39,6 +47,11 @@ class HomeRequestsBloc extends Bloc<AppEvent, AppState> {
   onClick(Click event, Emitter emit) async {
     try {
       _engine = event.arguments as SearchEngine;
+      if (selectIndex.value == 0) {
+        _engine.query = "public";
+      } else {
+        _engine.query = "deposit";
+      }
       if (_engine.currentPage == 0) {
         _cards.clear();
         emit(Loading());
@@ -50,7 +63,11 @@ class HomeRequestsBloc extends Bloc<AppEvent, AppState> {
       if (model.status == 200) {
         if (model.requests!.isNotEmpty) {
           for (var v in model.requests!) {
-            _cards.add(RequestCard(model: v));
+            _cards.add(HomeRequestCard(
+              key: ValueKey(v.id),
+              model: v,
+              isDeposit: _engine.query == "deposit",
+            ));
           }
           _engine.maxPages = model.meta?.lastPage ?? 1;
           _engine.updateCurrentPage(model.meta?.currPage ?? 1);

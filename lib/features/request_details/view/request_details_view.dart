@@ -72,7 +72,7 @@ class RequestDetailsView extends StatelessWidget {
                           ),
 
                           ///Items
-                          RequestItems(items: model.items ?? []),
+                          RequestItems(items: model.items),
                         ],
                       );
                     }

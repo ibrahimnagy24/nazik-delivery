@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/home_body.dart';
 import '../widgets/home_header.dart';
+import '../widgets/home_tabs.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -12,6 +13,7 @@ class HomeView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           HomeHeader(),
+          HomeTabs(),
           HomeBody(),
         ],
       ),

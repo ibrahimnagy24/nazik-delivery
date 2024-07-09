@@ -13,7 +13,7 @@ abstract class ApiNames {
   ///Requests
   static const requests = "orders";
   static requestDetails(id) => "orders/$id";
-  static assignRequest(id) => "assign-order/$id";
+  static assignRequest(id) => "orders/$id/assign-to-delivery-employee";
 
   static const purchase = "purchase";
   static const updateRequestStatus = "cancel/item";

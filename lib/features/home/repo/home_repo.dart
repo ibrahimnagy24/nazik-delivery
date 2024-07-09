@@ -8,7 +8,7 @@ abstract class HomeRepo {
   static Future<dynamic> getHomeRequests(SearchEngine data) async {
     return await Network().request(ApiNames.requests,
         query: {
-          "status": "in_libya_warehouse",
+          "delivery_app": data.query,
           "page": data.currentPage + 1,
           "limit": data.limit,
         },

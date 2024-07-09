@@ -121,5 +121,11 @@
   "there_is_no_data": "لا توجد بيانات",
   "loading": "جارٍ التحميل",
   "your_password_has_been_reset_successfully":"تم تعيين كلمة المرور بنجاح!",
-  "assign_request": "تعيين الطلب"
+  "assign_request": "تعيين الطلب",
+  "product_name": "اسم المنتج",
+  "sub_category": "النوع",
+  "city": "المدينة",
+  "order_delivery": "توصيل طلبات",
+  "receiving_a_deposit": "استلام عربون",
+  "order_assigned_successfully": "تم تعيين الطلب بنجاح!"
 }

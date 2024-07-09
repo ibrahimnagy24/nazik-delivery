@@ -3,7 +3,6 @@ import 'package:flutter_base/components/animated_widget.dart';
 import 'package:flutter_base/components/empty_container.dart';
 import 'package:flutter_base/components/shimmer/custom_shimmer.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
-import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +12,6 @@ import '../../../core/app_state.dart';
 import '../../../helpers/styles.dart';
 import '../../../model/search_engine.dart';
 import '../bloc/home_requests_bloc.dart';
-import '../../../widgets/request_card.dart';
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -101,46 +99,7 @@ class _HomeBodyState extends State<HomeBody> {
               ),
             );
           }
-          return RefreshIndicator(
-            color: Styles.PRIMARY_COLOR,
-            onRefresh: () async {
-              HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
-            },
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListAnimator(
-                    data: List.generate(
-                      4,
-                      (index) => RequestCard(
-                        model: RequestModel(
-                          id: index,
-                          items: [
-                            ItemModel(
-                                id: 1,
-                                color: "red",
-                                title: "T-shirt",
-                                price: "240",
-                                link: "www.zara.com",
-                                quantity: "3",
-                                size: "L"),
-                            ItemModel(
-                                id: 2,
-                                color: "red",
-                                title: "T-shirt",
-                                price: "240",
-                                link: "www.zara.com",
-                                quantity: "3",
-                                size: "L"),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
+          return const SizedBox();
         },
       ),
     );

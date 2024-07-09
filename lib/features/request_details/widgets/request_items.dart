@@ -8,8 +8,8 @@ import '../../../helpers/translation/all_translation.dart';
 import '../../../model/requests_model.dart';
 
 class RequestItems extends StatelessWidget {
-  const RequestItems({super.key, required this.items});
-  final List<ItemModel> items;
+  const RequestItems({super.key, this.items});
+  final List<ItemModel>? items;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ class RequestItems extends StatelessWidget {
           ),
         ),
         ...List.generate(
-            items.length ?? 0,
+            items?.length ?? 0,
             (index) => ItemCard(
-                  model: items[index],
+                  model: items?[index],
                 ))
       ],
     );

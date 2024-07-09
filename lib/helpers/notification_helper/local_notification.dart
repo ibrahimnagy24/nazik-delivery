@@ -1,4 +1,4 @@
-part of notification_helper;
+part of 'notification_helper.dart';
 
 FlutterLocalNotificationsPlugin? _notificationsPlugin =
     FlutterLocalNotificationsPlugin();
@@ -15,8 +15,8 @@ localNotification() {
           sound: true,
         );
   }
-  var android = AndroidInitializationSettings('@mipmap/ic_launcher');
-  var ios = DarwinInitializationSettings(
+  var android = const AndroidInitializationSettings('@mipmap/ic_launcher');
+  var ios = const DarwinInitializationSettings(
     defaultPresentBadge: true,
     defaultPresentAlert: true,
     defaultPresentSound: true,

@@ -15,7 +15,7 @@ abstract class LoginRepo {
         "email": username,
         "password": password,
         'device_token':
-        await SharedHelper.sharedHelper!.readString(CachingKey.DEVICE_TOKEN)
+            await SharedHelper.sharedHelper!.readString(CachingKey.DEVICE_TOKEN)
       }),
       method: ServerMethods.POST,
     );

@@ -156,6 +156,7 @@
   "order_assigned_successfully": "Order assigned successfully!",
   "order_unassigned_successfully": "Order Unassigned successfully!",
   "status_updated_successfully": "Order Status updated successfully!",
+  "your_profile_has_been_updated": "You Profile has been updated successfully!",
   "outForDelivery": "Out For Delivery"
 
 }

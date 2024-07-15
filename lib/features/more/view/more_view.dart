@@ -8,12 +8,24 @@ import '../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../../../navigation/routes.dart';
+import '../../profile/bloc/profile_bloc.dart';
 import '../bloc/logout_bloc.dart';
 import '../widget/more_button.dart';
 import '../widget/profile_widget.dart';
 
-class MoreView extends StatelessWidget {
+class MoreView extends StatefulWidget {
   const MoreView({super.key});
+
+  @override
+  State<MoreView> createState() => _MoreViewState();
+}
+
+class _MoreViewState extends State<MoreView> {
+  @override
+  void initState() {
+    ProfileBloc.instance.add(Click());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,58 +34,61 @@ class MoreView extends StatelessWidget {
         title: allTranslations.text("profile"),
         withBack: false,
       ),
-      body: SafeArea(child: Column(
-        children: [
-          Expanded(
-            child: ListAnimator(
-              data: [
-                const ProfileWidget(),
-                MoreButton(
-                  title: allTranslations.text("edit_profile"),
-                  icon: 'edit',
-                  onTap: () => CustomNavigator.push(Routes.EDIT_PROFILE),
-                ),    MoreButton(
-                  title: allTranslations.text("change_password"),
-                  icon: 'lock',
-                  onTap: () => CustomNavigator.push(Routes.CHANGE_PASSWORD),
-                ),
-                // MoreButton(
-                //   title: allTranslations.text("language"),
-                //   icon: 'global',
-                //   onTap: () => CustomNavigator.push(Routes.LANGUAGE),
-                // ),
-                MoreButton(
-                  title: allTranslations.text("privacy_policy"),
-                  icon: 'shield-tick',
-                  onTap: () => CustomNavigator.push(Routes.PRIVACY),
-                ),
-                MoreButton(
-                  title: allTranslations.text("terms_conditions"),
-                  icon: 'document-text',
-                  onTap: () => CustomNavigator.push(Routes.TERMS),
-                ),
-                BlocProvider(
-                  create: (context) => LogoutBloc(),
-                  child: BlocBuilder<LogoutBloc, AppState>(
-                    builder: (context, state) {
-                      return MoreButton(
-                        isLogout: true,
-                        isLoading: state is Loading,
-                        title: allTranslations.text("logout"),
-                        icon: 'logout',
-                        onTap: () {
-                          context.read<LogoutBloc>().add(Click());
-                        },
-                        color: Styles.DARK_RED,
-                      );
-                    },
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: ListAnimator(
+                data: [
+                  const ProfileWidget(),
+                  MoreButton(
+                    title: allTranslations.text("edit_profile"),
+                    icon: 'edit',
+                    onTap: () => CustomNavigator.push(Routes.EDIT_PROFILE),
                   ),
-                ),
-              ],
+                  MoreButton(
+                    title: allTranslations.text("change_password"),
+                    icon: 'lock',
+                    onTap: () => CustomNavigator.push(Routes.CHANGE_PASSWORD),
+                  ),
+                  // MoreButton(
+                  //   title: allTranslations.text("language"),
+                  //   icon: 'global',
+                  //   onTap: () => CustomNavigator.push(Routes.LANGUAGE),
+                  // ),
+                  MoreButton(
+                    title: allTranslations.text("privacy_policy"),
+                    icon: 'shield-tick',
+                    onTap: () => CustomNavigator.push(Routes.PRIVACY),
+                  ),
+                  MoreButton(
+                    title: allTranslations.text("terms_conditions"),
+                    icon: 'document-text',
+                    onTap: () => CustomNavigator.push(Routes.TERMS),
+                  ),
+                  BlocProvider(
+                    create: (context) => LogoutBloc(),
+                    child: BlocBuilder<LogoutBloc, AppState>(
+                      builder: (context, state) {
+                        return MoreButton(
+                          isLogout: true,
+                          isLoading: state is Loading,
+                          title: allTranslations.text("logout"),
+                          icon: 'logout',
+                          onTap: () {
+                            context.read<LogoutBloc>().add(Click());
+                          },
+                          color: Styles.DARK_RED,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),),
+          ],
+        ),
+      ),
     );
   }
 }

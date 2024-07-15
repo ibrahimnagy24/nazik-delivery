@@ -20,6 +20,8 @@ abstract class MyRequestsRepo {
         "employee_id": UserBloc.instance.user?.id,
         "page": data.currentPage + 1,
         "limit": data.limit,
+        "order[id]": "desc",
+
       },
       method: ServerMethods.GET,
       model: RequestsModel(),

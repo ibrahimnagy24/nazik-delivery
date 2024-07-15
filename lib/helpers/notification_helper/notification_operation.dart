@@ -34,9 +34,14 @@ void handlePath(Map dataMap) {
   handlePathByRoute(dataMap);
 }
 
-updateUserFunctions({@required notify}) async {}
+updateUserFunctions({@required notify}) async {
+  ProfileBloc.instance.add(Click());
+  NotificationsBloc.instance.add(Click(arguments: SearchEngine()));
+}
 
-Future<void> handlePathByRoute(Map notify) async {}
+Future<void> handlePathByRoute(Map notify) async {
+  CustomNavigator.push(Routes.MAIN_PAGE, arguments: 2, clean: true);
+}
 
 downloadAndSaveFile(String url, String fileName) async {
   var directory = await getApplicationDocumentsDirectory();

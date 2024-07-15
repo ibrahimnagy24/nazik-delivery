@@ -14,6 +14,7 @@ import 'package:flutter_base/bloc/main_app_bloc.dart';
 import 'features/home/bloc/home_requests_bloc.dart';
 import 'features/my_requests/bloc/my_requests_bloc.dart';
 import 'features/notifications/bloc/notifications_bloc.dart';
+import 'features/profile/bloc/profile_bloc.dart';
 import 'features/splash/splash_bloc.dart';
 import 'firebase_options.dart';
 import 'helpers/notification_helper/notification_helper.dart';
@@ -66,6 +67,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<HomeRequestsBloc>(create: (_) => HomeRequestsBloc()),
         BlocProvider<NotificationsBloc>(create: (_) => NotificationsBloc()),
         BlocProvider<MyRequestsBloc>(create: (_) => MyRequestsBloc()),
+        BlocProvider<ProfileBloc>(create: (_) => ProfileBloc()),
       ],
       child: StreamBuilder<String>(
         stream: mainAppBloc.langStream,

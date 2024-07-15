@@ -4,7 +4,7 @@ abstract class ApiNames {
   static const resend = "resend/code";
   static const otp = "check/code";
   static const resetPassword = "reset/password";
-  static const changePassword = "change/password";
+  static const changePassword = "edit/password";
 
   ///Profile
   static const profile = "profile";

@@ -8,7 +8,7 @@ abstract class ApiNames {
 
   ///Profile
   static const profile = "profile";
-  static const editProfile = "profile/edit";
+  static const editProfile = "edit/profile";
 
   ///Requests
   static const requests = "orders";

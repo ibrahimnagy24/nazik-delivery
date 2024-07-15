@@ -84,9 +84,10 @@ class EditProfileBloc extends Bloc<AppEvent, AppState> {
           UserBloc.instance.add(Click());
           AppCore.showSnackBar(
               notification: AppNotification(
-                  message: allTranslations.text("your_profile_has_been_updated"),
-                  backgroundColor: Styles.IN_ACTIVE,
-                  borderColor: Styles.DARK_RED,
+                  message:
+                      allTranslations.text("your_profile_has_been_updated"),
+                  backgroundColor: Styles.ACTIVE,
+                  borderColor: Styles.ACTIVE,
                   iconName: "fill-close-circle"));
 
           emit(Done());

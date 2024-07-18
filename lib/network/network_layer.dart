@@ -30,14 +30,15 @@ class Network {
   }
 
   Future<dynamic> request(
-      String endpoint, {
-        body,
-        Mapper? model,
-        Map<String, dynamic>? query,
-        Map<String, dynamic>? header,
-        ServerMethods method = ServerMethods.GET,
-      }) async {
+    String endpoint, {
+    body,
+    Mapper? model,
+    Map<String, dynamic>? query,
+    Map<String, dynamic>? header,
+    ServerMethods method = ServerMethods.GET,
+  }) async {
     String token = await SharedHelper().readString(CachingKey.TOKEN);
+
     Response? response;
 
     _dio.options.headers = {
@@ -59,7 +60,20 @@ class Network {
         ),
       );
       isActiveUser = true;
-      if (model == null) {
+      bool? isLogin = await SharedHelper().readBoolean(CachingKey.IS_LOGIN);
+
+      if (response.statusCode == 401 && isLogin == true) {
+        cprint(
+          "Sessions has been expired",
+          errorIn: AppConfig.BASE_URL + endpoint,
+          label: "Unhandled Exception",
+        );
+        await SharedHelper.sharedHelper!.logout();
+        AppCore.showSnackBar(
+            notification: AppNotification(
+                message: "Sessions has been expired",
+                backgroundColor: Styles.IN_ACTIVE));
+      } else if (model == null) {
         return response;
       } else {
         return Mapper(model, response.data);
@@ -85,20 +99,20 @@ class Network {
           "└------------------------------------------------------------------------------");
       cprint(
           "================================================================================");
+      bool? isLogin = await SharedHelper().readBoolean(CachingKey.IS_LOGIN);
 
-      if (response?.statusCode == 401) {
+      if (e.response?.statusCode == 401 && isLogin == true) {
         cprint(
           "Sessions has been expired",
           errorIn: AppConfig.BASE_URL + endpoint,
           label: "Unhandled Exception",
         );
         await SharedHelper.sharedHelper!.logout();
-        AppCore.showSnackBar(
+        return AppCore.showSnackBar(
             notification: AppNotification(
                 message: "Sessions has been expired",
                 backgroundColor: Styles.IN_ACTIVE));
-      }
-      else if (model == null) {
+      } else if (model == null) {
         return e.response;
       } else {
         return Mapper(model, e.response?.data);

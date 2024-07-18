@@ -4,7 +4,10 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_base/bloc/main_app_bloc.dart';
 import '../config/app_config.dart';
+import '../core/app_core.dart';
+import '../core/app_notification.dart';
 import '../helpers/shared_helper.dart';
+import '../helpers/styles.dart';
 import '../utility/utility.dart';
 import 'mapper.dart';
 import 'network_logger.dart';
@@ -27,14 +30,15 @@ class Network {
   }
 
   Future<dynamic> request(
-    String endpoint, {
-    body,
-    Mapper? model,
-    Map<String, dynamic>? query,
-    Map<String, dynamic>? header,
-    ServerMethods method = ServerMethods.GET,
-  }) async {
+      String endpoint, {
+        body,
+        Mapper? model,
+        Map<String, dynamic>? query,
+        Map<String, dynamic>? header,
+        ServerMethods method = ServerMethods.GET,
+      }) async {
     String token = await SharedHelper().readString(CachingKey.TOKEN);
+    Response? response;
 
     _dio.options.headers = {
       'Authorization': 'Bearer $token',
@@ -46,7 +50,7 @@ class Network {
       _dio.options.headers.addAll(header);
     }
     try {
-      Response response = await _dio.request(
+      response = await _dio.request(
         AppConfig.BASE_URL + endpoint,
         data: body,
         queryParameters: query,
@@ -81,7 +85,20 @@ class Network {
           "└------------------------------------------------------------------------------");
       cprint(
           "================================================================================");
-      if (model == null) {
+
+      if (response?.statusCode == 401) {
+        cprint(
+          "Sessions has been expired",
+          errorIn: AppConfig.BASE_URL + endpoint,
+          label: "Unhandled Exception",
+        );
+        await SharedHelper.sharedHelper!.logout();
+        AppCore.showSnackBar(
+            notification: AppNotification(
+                message: "Sessions has been expired",
+                backgroundColor: Styles.IN_ACTIVE));
+      }
+      else if (model == null) {
         return e.response;
       } else {
         return Mapper(model, e.response?.data);

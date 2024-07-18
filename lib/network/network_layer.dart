@@ -69,7 +69,7 @@ class Network {
           label: "Unhandled Exception",
         );
         await SharedHelper.sharedHelper!.logout();
-        AppCore.showSnackBar(
+        return AppCore.showSnackBar(
             notification: AppNotification(
                 message: "Sessions has been expired",
                 backgroundColor: Styles.IN_ACTIVE));

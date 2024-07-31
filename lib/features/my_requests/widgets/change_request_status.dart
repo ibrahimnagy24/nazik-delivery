@@ -17,10 +17,12 @@ class ChangeRequestStatus extends StatelessWidget {
       {super.key,
       required this.id,
       required this.status,
-      this.fromRequestDetails = false});
+      this.fromRequestDetails = false,
+      this.isDeposit = false});
   final RequestStatus status;
   final int? id;
   final bool fromRequestDetails;
+  final bool isDeposit;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,9 @@ class ChangeRequestStatus extends StatelessWidget {
                             "status": RequestStatus.values[status.index] ==
                                     RequestStatus.inProgress
                                 ? "out_for_delivery"
-                                : "completed"
+                                : isDeposit
+                                    ? "purchase_in_progress"
+                                    : "completed"
                           })),
                     );
                   },

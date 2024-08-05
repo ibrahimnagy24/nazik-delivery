@@ -157,6 +157,22 @@
   "order_unassigned_successfully": "Order Unassigned successfully!",
   "status_updated_successfully": "Order Status updated successfully!",
   "your_profile_has_been_updated": "You Profile has been updated successfully!",
-  "outForDelivery": "Out For Delivery"
+  "outForDelivery": "Out For Delivery",
+  "refund": "Refund",
+  "refund_value": "Refund Amount",
+  "refund_details": "Refund Details",
+  "my_refunds": "My Refunds",
+  "awaiting_money": "Pending",
+  "awaiting_money_picked": "In Progress",
+  "money_picked": "Picked",
+  "money_transit": "In Delivery",
+  "approved": "Pending",
+  "awaiting_pickup": "In Progress",
+  "in_transit_to_libya":"In Delivery",
+  "arrived_libya": "Delivered",
+  "del_completed": "Completed",
 
+  "order_refund": "Order Refund",
+  "money_refund": "Money Refund",
+  "updated_successfully": "Updated Successfully!"
 }

@@ -17,6 +17,14 @@ abstract class ApiNames {
   static unAssignRequest(id) => "orders/$id/un-assign-to-delivery-employee";
   static updateRequestStatus(id) => "update-order-status/$id";
 
+  ///refunds
+  static const refunds = "refunds";
+  static refundDetails(id) => "refunds/$id";
+  static const assignRefund = "assign-refund";
+  static updateRefunds(id) => "refunds/change-status/$id";
+  static deleteRefund(id) => "delete-refund/$id";
+
+
   ///Notifications
   static const notifications = "notifications";
   static readNotifications(id) => "notifications/read/$id";

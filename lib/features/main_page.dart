@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/features/profile/bloc/profile_bloc.dart';
 import 'package:flutter_base/widgets/nav_app.dart';
 
 import '../bloc/user_bloc.dart';
 import '../core/app_event.dart';
-import '../model/search_engine.dart';
-import 'home/bloc/home_requests_bloc.dart';
 import 'home/view/home_view.dart';
 import 'more/view/more_view.dart';
-import 'notifications/bloc/notifications_bloc.dart';
-import 'notifications/view/notifications_view.dart';
-import 'my_requests/bloc/my_requests_bloc.dart';
+import 'my_refunds/view/my_refunds_view.dart';
 import 'my_requests/view/my_requests_view.dart';
 
 class MainPage extends StatefulWidget {
@@ -34,9 +29,6 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
 
   initData() {
     UserBloc.instance.add(Click());
-    HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
-    NotificationsBloc.instance.add(Click(arguments: SearchEngine()));
-    MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
   }
 
   Widget fregmant(int index) {
@@ -46,7 +38,7 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
       case 1:
         return const MyRequestsView();
       case 2:
-        return const NotificationsView();
+        return const MyRefundsView();
       case 3:
         return const MoreView();
       default:

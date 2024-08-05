@@ -12,7 +12,7 @@ Widget customImageIcon({
   color,
 }) {
   return Image.asset(
-    imagePath?? 'assets/${folderPath ?? "images"}/$imageName."png"}',
+    imagePath ?? 'assets/${folderPath ?? "images"}/$imageName."png"}',
     color: color,
     width: width ?? 30,
     height: height ?? 25,
@@ -69,14 +69,19 @@ Widget customCircleSvgIcon(
 Widget customImageIconSVG({
   required String? imageName,
   Color? color,
+  Color? backgroundColor,
   double? height,
   double? width,
+  Function()? onTap,
 }) {
-  return Images(
-    image: 'assets/svgs/$imageName.svg',
-    color: color,
-    height: height,
-    width: width,
+  return InkWell(
+    onTap: onTap,
+    child: Images(
+      image: 'assets/svgs/$imageName.svg',
+      color: color,
+      height: height,
+      width: width,
+    ),
   );
 }
 

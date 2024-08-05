@@ -55,10 +55,10 @@ class _NavAppState extends State<NavApp> {
         ),
         BottomNavigationBarItem(
           icon: Images(
-            image: 'assets/svgs/notification.svg',
+            image: 'assets/svgs/task_square.svg',
             color: _selectedColor(2),
           ),
-          label: allTranslations.text("notifications"),
+          label: allTranslations.text("my_refunds"),
         ),
         BottomNavigationBarItem(
           icon: Images(

@@ -28,6 +28,9 @@ class _NotificationsViewState extends State<NotificationsView> {
   void initState() {
     controller = ScrollController();
     NotificationsBloc.instance.customScroll(controller);
+    if (NotificationsBloc.instance.state is! Done) {
+      NotificationsBloc.instance.add(Click(arguments: SearchEngine()));
+    }
 
     super.initState();
   }

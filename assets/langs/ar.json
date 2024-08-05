@@ -132,5 +132,21 @@
   "order_unassigned_successfully": "تم إلغاء الطلب بنجاح!",
   "status_updated_successfully": "تم تحديث حالة الطلب بنجاح!",
   "your_profile_has_been_updated": "تم تحديث الحساب بنجاح!",
-  "outForDelivery": "جاري التوصيل"
+  "outForDelivery": "جاري التوصيل",
+  "refund": "الارجاع",
+  "refund_amount": "قيمة الارجاع",
+  "refund_details": "تفاصيل الارجاع",
+  "my_refunds": "مرتجعاتي",
+  "awaiting_money": "قيد الانتظار",
+  "awaiting_money_picked": "قيد التنفيذ",
+  "money_picked": "تم الالتقاط",
+  "money_transit": "في التوصيل",
+  "approved": "قيد الانتظار",
+  "awaiting_pickup": "قيد التنفيذ",
+  "in_transit_to_libya": "في التوصيل",
+  "arrived_libya": "تم التوصيل",
+  "del_completed": "مكتمل",
+  "order_refund": "ارجاع الطلب",
+  "money_refund": "ارجاع المال",
+  "updated_successfully": "تم التحديث بنجاح!"
 }

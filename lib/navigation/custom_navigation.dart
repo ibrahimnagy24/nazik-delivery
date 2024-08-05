@@ -5,6 +5,7 @@ import 'package:flutter_base/features/auth/reset_password/view/reset_password_vi
 import 'package:flutter_base/features/auth/login/view/login.dart';
 import 'package:flutter_base/features/edit_profile/view/edit_profile_view.dart';
 import 'package:flutter_base/features/privacy/view/policy_view.dart';
+import 'package:flutter_base/features/refund_details/view/refund_details_view.dart';
 import 'package:flutter_base/features/request_details/view/request_details_view.dart';
 import 'package:flutter_base/features/splash/splash.dart';
 import 'package:flutter_base/features/main_page.dart';
@@ -65,6 +66,10 @@ abstract class CustomNavigator {
       case Routes.REQUEST_DETAILS:
         return pageRouteBuilder(
             RequestDetailsView(id: settings.arguments as int));
+
+      case Routes.REFUND_DETAILS:
+        return pageRouteBuilder(
+            RefundDetailsView(id: settings.arguments as int));
 
       case Routes.PRIVACY:
         return pageRouteBuilder(const PrivacyPolicyView());

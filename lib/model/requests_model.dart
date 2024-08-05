@@ -77,8 +77,8 @@ class RequestModel extends SingleMapper {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['employee_id'] = employeeId;
-    data['mobile_number'] = mobileNumber;
     data['number'] = orderNumber;
+    data['mobile_number'] = mobileNumber;
     data['user_address'] = address;
     data['deposit'] = deposit;
     data['status'] = status?.index;

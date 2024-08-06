@@ -159,7 +159,7 @@
   "your_profile_has_been_updated": "You Profile has been updated successfully!",
   "outForDelivery": "Out For Delivery",
   "refund": "Refund",
-  "refund_value": "Refund Amount",
+  "refund_amount": "Refund Amount",
   "refund_details": "Refund Details",
   "my_refunds": "My Refunds",
   "awaiting_money": "Pending",
@@ -174,5 +174,9 @@
 
   "order_refund": "Order Refund",
   "money_refund": "Money Refund",
-  "updated_successfully": "Updated Successfully!"
+  "updated_successfully": "Updated Successfully!",
+  "deliver_refunds": "Delivery Refunds",
+  "deliver_purchases": "Deliver Purchases",
+  "receiving_order": "Receiving Order",
+  "deliver_money": "Deliver Money"
 }

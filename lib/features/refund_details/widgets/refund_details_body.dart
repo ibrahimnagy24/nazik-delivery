@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_base/features/my_refunds/bloc/my_order_refunds_bloc.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_base/widgets/item_card.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -95,22 +96,29 @@ class RefundDetailsBody extends StatelessWidget {
             ),
           ),
 
-          ///Products
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 12.h),
-            child: Text(
-              allTranslations.text("products"),
-              style: AppTextStyles.w600.copyWith(
-                fontSize: 16,
-                color: Styles.HEADER,
-              ),
-            ),
-          ),
-          ...List.generate(
-              model.items?.length ?? 0,
-              (index) => ItemCard(
-                    model: model.items?[index],
-                  )),
+          ///If Order Refund Only Show Product for Delivery Man
+          if (MyOrderRefundsBloc.instance.orderStatus.contains(model.status))
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ///Products
+                Padding(
+                  padding: EdgeInsets.only(top: 12.h, bottom: 4.h),
+                  child: Text(
+                    allTranslations.text("products"),
+                    style: AppTextStyles.w600.copyWith(
+                      fontSize: 16,
+                      color: Styles.HEADER,
+                    ),
+                  ),
+                ),
+                ...List.generate(
+                    model.items?.length ?? 0,
+                    (index) => ItemCard(
+                          model: model.items?[index],
+                        )),
+              ],
+            )
         ],
       ),
     );

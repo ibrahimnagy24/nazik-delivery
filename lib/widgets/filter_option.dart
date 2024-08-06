@@ -26,7 +26,7 @@ class FilterOption extends StatelessWidget {
       child: Center(
         child: Text(
           title,
-          style: AppTextStyles.w500.copyWith(
+          style: AppTextStyles.w600.copyWith(
               fontSize: 14,
               color: isSelect ? Styles.WHITE_COLOR : Styles.PRIMARY_COLOR),
         ),

@@ -11,9 +11,11 @@ import '../../my_refunds/model/refunds_model.dart';
 import '../bloc/assign_refund_bloc.dart';
 
 class AssignRefundItemButton extends StatelessWidget {
-  const AssignRefundItemButton({super.key, required this.model});
+  const AssignRefundItemButton(
+      {super.key, required this.model, this.isRefundMoney = true});
 
   final RefundModel model;
+  final bool isRefundMoney;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,19 @@ class AssignRefundItemButton extends StatelessWidget {
               onPressed: () =>
                   context.read<AssignRefundItemBloc>().add(Click(arguments: {
                         "id": model.id,
+                        "status": isRefundMoney
+                            ? RefundStatus.awaiting_money_picked
+                            : RefundStatus.awaiting_pickup,
                         "onSuccess": () {
-                          // model.status = RefundStatus.claimed_return;
+                          if (isRefundMoney) {
+                            model.status = RefundStatus.awaiting_money_picked;
+                            // MyMoneyRefundsBloc.instance
+                            //     .add(Update(arguments: model.id));
+                          } else {
+                            model.status = RefundStatus.awaiting_pickup;
+                            // MyOrderRefundsBloc.instance
+                            //     .add(Update(arguments: model.id));
+                          }
                           context
                               .read<RefundDetailsBloc>()
                               .add(Update(arguments: model));

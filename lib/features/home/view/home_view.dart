@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../core/app_event.dart';
-import '../../../core/app_state.dart';
-import '../../../model/search_engine.dart';
-import '../bloc/home_requests_bloc.dart';
-import '../widgets/home_body.dart';
+import '../../../helpers/translation/all_translation.dart';
+import '../../../widgets/tab_widget.dart';
+import '../widgets/purchase/home_purchase_body.dart';
 import '../widgets/home_header.dart';
-import '../widgets/home_tabs.dart';
+import '../widgets/purchase/home_purchase_tabs.dart';
+import '../widgets/refunds/home_refunds_body.dart';
+import '../widgets/refunds/home_refunds_tabs.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -15,23 +15,54 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  @override
-  void initState() {
-    if (HomeRequestsBloc.instance.state is! Done) {
-      HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
-    }
-    super.initState();
-  }
+  List<String> titles = [
+    allTranslations.text("deliver_purchases"),
+    allTranslations.text('deliver_refunds')
+  ];
+
+  int currentIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          HomeHeader(),
-          HomeTabs(),
-          HomeBody(),
+          const HomeHeader(),
+
+          ///Tabs
+          Row(
+            children: List.generate(
+                2,
+                (index) => Expanded(
+                      child: TabWidget(
+                        data: titles[index],
+                        isSelected: currentIndex == index,
+                        onClick: () {
+                          setState(() => currentIndex = index);
+                        },
+                        expand: true,
+                      ),
+                    )),
+          ),
+          // if (currentIndex == 1) SizedBox(height: 16.h),
+
+          ///Body
+          Expanded(
+              child: (currentIndex == 0)
+                  ? const Column(
+                      children: [
+                        HomePurchaseTabs(),
+                        HomePurchaseBody(),
+                      ],
+                    )
+                  : const Column(
+                      children: [
+                        HomeRefundsTabs(),
+                        HomeRefundsBody(),
+                      ],
+                    )),
         ],
       ),
     );

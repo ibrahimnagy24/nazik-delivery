@@ -148,5 +148,9 @@
   "del_completed": "مكتمل",
   "order_refund": "ارجاع الطلب",
   "money_refund": "ارجاع المال",
-  "updated_successfully": "تم التحديث بنجاح!"
+  "updated_successfully": "تم التحديث بنجاح!",
+  "deliver_refunds": "توصيل مرتجعات",
+  "deliver_purchases":  "توصيل مشتريات",
+  "receiving_order": "استلام طلب",
+  "deliver_money": "تسليم مال"
 }

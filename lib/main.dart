@@ -11,7 +11,8 @@ import 'package:flutter_base/helpers/shared_helper.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/helpers/translation/translations.dart';
 import 'package:flutter_base/bloc/main_app_bloc.dart';
-import 'features/home/bloc/home_requests_bloc.dart';
+import 'features/home/bloc/home_purchases_requests_bloc.dart';
+import 'features/home/bloc/home_refunds_requests_bloc.dart';
 import 'features/my_refunds/bloc/my_money_refunds_bloc.dart';
 import 'features/my_refunds/bloc/my_order_refunds_bloc.dart';
 import 'features/my_requests/bloc/my_requests_bloc.dart';
@@ -66,10 +67,11 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<SplashBloc>(create: (_) => SplashBloc()),
         BlocProvider<UserBloc>(create: (_) => UserBloc()),
         BlocProvider<KeyBordBloc>(create: (_) => KeyBordBloc()),
-        BlocProvider<HomeRequestsBloc>(create: (_) => HomeRequestsBloc()),
+        BlocProvider<HomePurchasesRequestsBloc>(create: (_) => HomePurchasesRequestsBloc()),
         BlocProvider<NotificationsBloc>(create: (_) => NotificationsBloc()),
         BlocProvider<MyRequestsBloc>(create: (_) => MyRequestsBloc()),
         ///Refunds
+        BlocProvider<HomeRefundsRequestsBloc>(create: (_) => HomeRefundsRequestsBloc()),
         BlocProvider<MyMoneyRefundsBloc>(create: (_) => MyMoneyRefundsBloc()),
         BlocProvider<MyOrderRefundsBloc>(create: (_) => MyOrderRefundsBloc()),
         BlocProvider<ProfileBloc>(create: (_) => ProfileBloc()),

@@ -9,7 +9,7 @@ import 'package:flutter_base/core/app_state.dart';
 import '../../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
 import '../../../model/search_engine.dart';
-import '../../home/bloc/home_requests_bloc.dart';
+import '../../home/bloc/home_purchases_requests_bloc.dart';
 import '../repo/requests_repo.dart';
 import 'my_requests_bloc.dart';
 
@@ -35,7 +35,7 @@ class UpdateRequestStatusBloc extends Bloc<AppEvent, AppState> {
         );
         MyRequestsBloc.instance
             .add(Update(arguments: (event.arguments as Map)["id"]));
-        HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
+        HomePurchasesRequestsBloc.instance.add(Click(arguments: SearchEngine()));
         emit(Done());
       } else {
         AppCore.showSnackBar(

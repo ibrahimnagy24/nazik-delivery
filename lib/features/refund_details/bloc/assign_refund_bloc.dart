@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_base/features/home/bloc/home_refunds_requests_bloc.dart';
 import 'package:flutter_base/model/search_engine.dart';
 import 'package:flutter_base/navigation/custom_navigation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +10,6 @@ import '../../../../core/app_notification.dart';
 import '../../../../core/app_state.dart';
 import '../../../../helpers/styles.dart';
 import '../../../../helpers/translation/all_translation.dart';
-import '../../my_refunds/bloc/my_order_refunds_bloc.dart';
-import '../../my_refunds/model/refunds_model.dart';
 import '../repo/refund_details_repo.dart';
 
 class AssignRefundItemBloc extends Bloc<AppEvent, AppState> {
@@ -23,7 +22,7 @@ class AssignRefundItemBloc extends Bloc<AppEvent, AppState> {
       emit(Loading());
 
       Map<String, dynamic> data = {
-        "status": "claimed_return",
+        "status": (event.arguments as Map<String, dynamic>)["status"],
         "refunds[0]": (event.arguments as Map<String, dynamic>)["id"],
       };
 
@@ -37,17 +36,15 @@ class AssignRefundItemBloc extends Bloc<AppEvent, AppState> {
               borderColor: Styles.GREEN,
               isFloating: true),
         );
-        // HomeRefundsBloc.instance.add(
-        //     Update(arguments: (event.arguments as Map<String, dynamic>)["id"]));
+        HomeRefundsRequestsBloc.instance.add(
+            Update(arguments: (event.arguments as Map<String, dynamic>)["id"]));
         ((event.arguments as Map<String, dynamic>)["onSuccess"] as Function())
             .call();
 
-        ///To Update My Refunds after Assign Refund`
-        MyOrderRefundsBloc.instance.updateSelectStatus(RefundStatus.del_completed);
-        MyOrderRefundsBloc.instance.add(Click(arguments: SearchEngine()));
+        ///To Update My Refunds after Assign Refund
         emit(Done());
       } else if (res.statusCode == 422) {
-        // HomeRefundsBloc.instance.add(Click(arguments: SearchEngine()));
+        HomeRefundsRequestsBloc.instance.add(Click(arguments: SearchEngine()));
         CustomNavigator.pop();
         AppCore.showSnackBar(
             notification: AppNotification(

@@ -12,13 +12,13 @@ import '../../../model/requests_model.dart';
 import '../../../model/search_engine.dart';
 import '../../../navigation/custom_navigation.dart';
 import '../repo/home_repo.dart';
-import '../widgets/home_request_card.dart';
+import '../widgets/purchase/home_purchase_request_card.dart';
 
-class HomeRequestsBloc extends Bloc<AppEvent, AppState> {
-  static HomeRequestsBloc get instance =>
+class HomePurchasesRequestsBloc extends Bloc<AppEvent, AppState> {
+  static HomePurchasesRequestsBloc get instance =>
       BlocProvider.of(CustomNavigator.navigatorState.currentContext!);
 
-  HomeRequestsBloc() : super(Start()) {
+  HomePurchasesRequestsBloc() : super(Start()) {
     updateSelectIndex(0);
     on<Click>(onClick);
     on<Update>(onUpdate);
@@ -59,11 +59,11 @@ class HomeRequestsBloc extends Bloc<AppEvent, AppState> {
         emit(Done(cards: _cards, loading: true));
       }
 
-      RequestsModel model = await HomeRepo.getHomeRequests(_engine);
+      RequestsModel model = await HomeRepo.getHomePurchasesRequests(_engine);
       if (model.status == 200) {
         if (model.requests!.isNotEmpty) {
           for (var v in model.requests!) {
-            _cards.add(HomeRequestCard(
+            _cards.add(HomePurchaseRequestCard(
               key: ValueKey(v.id),
               model: v,
               isDeposit: _engine.query == "deposit",

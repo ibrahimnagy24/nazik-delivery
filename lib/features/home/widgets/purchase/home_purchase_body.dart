@@ -6,28 +6,30 @@ import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../components/custom_loading_text.dart';
-import '../../../core/app_event.dart';
-import '../../../core/app_state.dart';
-import '../../../helpers/styles.dart';
-import '../../../model/search_engine.dart';
-import '../bloc/home_requests_bloc.dart';
+import '../../../../components/custom_loading_text.dart';
+import '../../../../core/app_event.dart';
+import '../../../../core/app_state.dart';
+import '../../../../helpers/styles.dart';
+import '../../../../model/search_engine.dart';
+import '../../bloc/home_purchases_requests_bloc.dart';
 
-class HomeBody extends StatefulWidget {
-  const HomeBody({super.key});
+class HomePurchaseBody extends StatefulWidget {
+  const HomePurchaseBody({super.key});
 
   @override
-  State<HomeBody> createState() => _HomeBodyState();
+  State<HomePurchaseBody> createState() => _HomePurchaseBodyState();
 }
 
-class _HomeBodyState extends State<HomeBody> {
+class _HomePurchaseBodyState extends State<HomePurchaseBody> {
   late ScrollController controller;
 
   @override
   void initState() {
     controller = ScrollController();
-    HomeRequestsBloc.instance.customScroll(controller);
-
+    HomePurchasesRequestsBloc.instance.customScroll(controller);
+    if (HomePurchasesRequestsBloc.instance.state is! Done) {
+      HomePurchasesRequestsBloc.instance.add(Click(arguments: SearchEngine()));
+    }
     super.initState();
   }
 
@@ -40,7 +42,7 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: BlocBuilder<HomeRequestsBloc, AppState>(
+      child: BlocBuilder<HomePurchasesRequestsBloc, AppState>(
         builder: (context, state) {
           if (state is Loading) {
             return ListAnimator(
@@ -60,7 +62,8 @@ class _HomeBodyState extends State<HomeBody> {
             return RefreshIndicator(
               color: Styles.PRIMARY_COLOR,
               onRefresh: () async {
-                HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
+                HomePurchasesRequestsBloc.instance
+                    .add(Click(arguments: SearchEngine()));
               },
               child: Column(
                 children: [
@@ -79,7 +82,8 @@ class _HomeBodyState extends State<HomeBody> {
             return RefreshIndicator(
               color: Styles.PRIMARY_COLOR,
               onRefresh: () async {
-                HomeRequestsBloc.instance.add(Click(arguments: SearchEngine()));
+                HomePurchasesRequestsBloc.instance
+                    .add(Click(arguments: SearchEngine()));
               },
               child: Column(
                 children: [

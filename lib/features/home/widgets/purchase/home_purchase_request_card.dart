@@ -7,8 +7,8 @@ import 'package:flutter_base/navigation/custom_navigation.dart';
 import 'package:flutter_base/navigation/routes.dart';
 import 'package:flutter_base/utility/extensions.dart';
 
-class HomeRequestCard extends StatelessWidget {
-  const HomeRequestCard({super.key, this.model, this.isDeposit = false});
+class HomePurchaseRequestCard extends StatelessWidget {
+  const HomePurchaseRequestCard({super.key, this.model, this.isDeposit = false});
   final RequestModel? model;
   final bool isDeposit;
 

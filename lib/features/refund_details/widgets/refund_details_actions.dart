@@ -12,8 +12,12 @@ class RefundDetailsActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // if (model?.status == RefundStatus.in_turkiye)
-        //   AssignRefundItemButton(model: model!),
+        if (model.status == RefundStatus.approved ||
+            model.status == RefundStatus.awaiting_money)
+          AssignRefundItemButton(
+            model: model,
+            isRefundMoney: RefundStatus.approved == model.status,
+          ),
         if (model.status == RefundStatus.awaiting_pickup)
           UpdateOrderRefundActions(
             model: model,

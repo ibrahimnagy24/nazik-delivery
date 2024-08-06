@@ -8,7 +8,7 @@ import 'package:flutter_base/core/app_state.dart';
 import '../../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
 import '../../../model/search_engine.dart';
-import '../../home/bloc/home_requests_bloc.dart';
+import '../../home/bloc/home_purchases_requests_bloc.dart';
 import '../../my_requests/bloc/my_requests_bloc.dart';
 import '../repo/request_details_repo.dart';
 
@@ -31,7 +31,7 @@ class AssignRequestBloc extends Bloc<AppEvent, AppState> {
               isFloating: true),
         );
         CustomNavigator.pop();
-        HomeRequestsBloc.instance
+        HomePurchasesRequestsBloc.instance
             .add(Update(arguments: event.arguments as int));
         MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
         emit(Done());

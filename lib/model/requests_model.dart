@@ -200,7 +200,7 @@ class ItemModel extends SingleMapper {
   }
 }
 
-enum RequestStatus { inProgress, outForDelivery, completed }
+enum RequestStatus { inProgress, outForDelivery, completed, amountCollected }
 
 _getRequestStatus(status) {
   if (status == "in_libya_warehouse") {
@@ -214,6 +214,9 @@ _getRequestStatus(status) {
   }
   if (status == "completed") {
     return RequestStatus.completed;
+  }
+  if (status == "amount_collected") {
+    return RequestStatus.amountCollected;
   } else {
     return null;
   }

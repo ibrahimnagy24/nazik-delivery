@@ -73,9 +73,11 @@ class UpdateOrderRefundActions extends StatelessWidget {
               },
             ),
           )),
-          if (model.status == RefundStatus.awaiting_pickup)
+          if (model.status == RefundStatus.awaiting_pickup ||
+              model.status == RefundStatus.awaiting_money_picked)
             SizedBox(width: 12.w),
-          if (model.status == RefundStatus.awaiting_pickup)
+          if (model.status == RefundStatus.awaiting_pickup ||
+              model.status == RefundStatus.awaiting_money_picked)
             Expanded(
                 child: BlocProvider(
               create: (context) => UpdateRefundStatusBloc(),
@@ -92,13 +94,15 @@ class UpdateOrderRefundActions extends StatelessWidget {
                         .add(Click(arguments: {
                           "id": model.id,
                           "status": RefundStatus.approved.name,
-                          if (!fromMyRefunds)
-                            "onSuccess": () {
-                              model.status = RefundStatus.approved;
-                              context
-                                  .read<RefundDetailsBloc>()
-                                  .add(Update(arguments: model));
-                            }
+                          "onSuccess": () {
+                            model.status = RefundStatus.approved;
+                            fromMyRefunds
+                                ? MyOrderRefundsBloc.instance
+                                    .add(Update(arguments: model.id))
+                                : context
+                                    .read<RefundDetailsBloc>()
+                                    .add(Update(arguments: model));
+                          }
                         })),
                   );
                 },

@@ -106,6 +106,9 @@ enum RefundStatus {
 }
 
 _getRequestStatus(status) {
+  if (status == "approved") {
+    return RefundStatus.approved;
+  }
   if (status == "awaiting_money") {
     return RefundStatus.awaiting_money;
   }

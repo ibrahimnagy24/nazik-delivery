@@ -178,5 +178,6 @@
   "deliver_refunds": "Delivery Refunds",
   "deliver_purchases": "Deliver Purchases",
   "receiving_order": "Receiving Order",
-  "deliver_money": "Deliver Money"
+  "deliver_money": "Deliver Money",
+  "amountCollected": "Delivered Money"
 }

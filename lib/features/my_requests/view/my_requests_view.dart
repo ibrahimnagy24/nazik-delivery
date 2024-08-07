@@ -29,6 +29,7 @@ class _MyRequestsViewState extends State<MyRequestsView> {
     return Scaffold(
       appBar: CustomAppBar(
         title: allTranslations.text("requests"),
+        withBack: false,
       ),
       body: const Column(
         children: [

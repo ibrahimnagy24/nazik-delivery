@@ -7,6 +7,7 @@ import '../../../core/app_state.dart';
 import '../../../helpers/media_query_helper.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/text_styles.dart';
+import '../../../helpers/translation/all_translation.dart';
 import 'profile_image.dart';
 
 class ProfileWidget extends StatelessWidget {
@@ -37,6 +38,34 @@ class ProfileWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.wallet,
+                        color: Styles.PRIMARY_COLOR, size: 24),
+                    SizedBox(width: 12.w),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: "${allTranslations.text("balance")}  ",
+                        style: AppTextStyles.w400.copyWith(
+                          fontSize: 14,
+                          color: Styles.HEADER,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: UserBloc.instance.user?.balance ?? "100",
+                            style: AppTextStyles.w600.copyWith(
+                              fontSize: 18,
+                              color: Styles.PRIMARY_COLOR,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

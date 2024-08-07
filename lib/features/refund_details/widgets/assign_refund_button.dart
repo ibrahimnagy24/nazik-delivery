@@ -3,6 +3,7 @@ import 'package:flutter_base/components/custom_btn.dart';
 import 'package:flutter_base/core/app_state.dart';
 import 'package:flutter_base/features/refund_details/bloc/refund_details_bloc.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
+import 'package:flutter_base/navigation/custom_navigation.dart';
 import 'package:flutter_base/utility/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,21 +31,18 @@ class AssignRefundItemButton extends StatelessWidget {
                   context.read<AssignRefundItemBloc>().add(Click(arguments: {
                         "id": model.id,
                         "status": isRefundMoney
-                            ? RefundStatus.awaiting_money_picked
-                            : RefundStatus.awaiting_pickup,
+                            ? RefundStatus.awaiting_money_picked.name
+                            : RefundStatus.awaiting_pickup.name,
                         "onSuccess": () {
                           if (isRefundMoney) {
                             model.status = RefundStatus.awaiting_money_picked;
-                            // MyMoneyRefundsBloc.instance
-                            //     .add(Update(arguments: model.id));
+                            CustomNavigator.pop();
                           } else {
                             model.status = RefundStatus.awaiting_pickup;
-                            // MyOrderRefundsBloc.instance
-                            //     .add(Update(arguments: model.id));
+                            context
+                                .read<RefundDetailsBloc>()
+                                .add(Update(arguments: model));
                           }
-                          context
-                              .read<RefundDetailsBloc>()
-                              .add(Update(arguments: model));
                         }
                       })),
               text: allTranslations.text("refund").replaceAll("ال", ""),

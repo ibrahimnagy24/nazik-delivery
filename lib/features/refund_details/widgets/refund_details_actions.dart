@@ -16,7 +16,7 @@ class RefundDetailsActions extends StatelessWidget {
             model.status == RefundStatus.awaiting_money)
           AssignRefundItemButton(
             model: model,
-            isRefundMoney: RefundStatus.approved == model.status,
+            isRefundMoney: RefundStatus.awaiting_money == model.status,
           ),
         if (model.status == RefundStatus.awaiting_pickup)
           UpdateOrderRefundActions(

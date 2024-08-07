@@ -29,7 +29,7 @@ class MyOrderRefundsBloc extends Bloc<AppEvent, AppState> {
     RefundStatus.awaiting_pickup,
     RefundStatus.in_transit_to_libya,
     RefundStatus.arrived_libya,
-    RefundStatus.del_completed
+    // RefundStatus.del_completed
   ];
 
   int getStatusIndex(RefundStatus status) {

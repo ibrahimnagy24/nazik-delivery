@@ -152,5 +152,6 @@
   "deliver_refunds": "توصيل مرتجعات",
   "deliver_purchases":  "توصيل مشتريات",
   "receiving_order": "استلام طلب",
-  "deliver_money": "تسليم مال"
+  "deliver_money": "تسليم مال",
+  "amountCollected": "تم تسليم المبلغ"
 }

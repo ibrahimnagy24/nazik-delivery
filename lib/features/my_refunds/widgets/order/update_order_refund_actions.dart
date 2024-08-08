@@ -55,10 +55,7 @@ class UpdateOrderRefundActions extends StatelessWidget {
                                 1)]
                             .name,
                         "onSuccess": () {
-                          if (fromMyRefunds) {
-                            MyOrderRefundsBloc.instance
-                                .add(Update(arguments: model.id));
-                          } else {
+                          if (!fromMyRefunds) {
                             model.status = MyOrderRefundsBloc.instance
                                 .orderStatus[(MyOrderRefundsBloc.instance
                                     .getStatusIndex(model.status!) +
@@ -67,6 +64,8 @@ class UpdateOrderRefundActions extends StatelessWidget {
                                 .read<RefundDetailsBloc>()
                                 .add(Update(arguments: model));
                           }
+                          MyOrderRefundsBloc.instance
+                              .add(Update(arguments: model.id));
                         }
                       })),
                 );

@@ -25,6 +25,7 @@ abstract class HomeRepo {
           "page": data.currentPage + 1,
           "limit": data.limit,
           "order[id]": "desc",
+          "createdByClient": true
         },
         method: ServerMethods.GET,
         model: RefundsModel());

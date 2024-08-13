@@ -100,7 +100,8 @@ class MyMoneyRefundCard extends StatelessWidget {
               ],
             ),
           ),
-          if (model.status != RefundStatus.del_completed)
+          if (model.status != RefundStatus.del_completed &&
+              model.status != null)
             UpdateMoneyRefundActions(
               id: model.id ?? 0,
               status: model.status!,

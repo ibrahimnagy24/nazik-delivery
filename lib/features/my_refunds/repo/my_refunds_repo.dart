@@ -11,7 +11,11 @@ abstract class MyRefundRepo {
     return await Network().request(
       ApiNames.refunds,
       query: {
-        "status": status.name,
+        if (RefundStatus.arrived_libya != status &&
+            RefundStatus.del_completed != status)
+          "status": status.name,
+        if (RefundStatus.arrived_libya == status) "delivered": true,
+        if (RefundStatus.del_completed == status) "completed ": true,
         "page": data.currentPage + 1,
         "limit": data.limit,
         "order[id]": "desc",

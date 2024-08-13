@@ -132,6 +132,9 @@ _getRequestStatus(status) {
   }
   if (status == "del_completed") {
     return RefundStatus.del_completed;
+  }
+  if (status == "admin_completed") {
+    return RefundStatus.del_completed;
   } else {
     return null;
   }

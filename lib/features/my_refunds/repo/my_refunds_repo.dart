@@ -15,10 +15,13 @@ abstract class MyRefundRepo {
             RefundStatus.del_completed != status)
           "status": status.name,
         if (RefundStatus.arrived_libya == status) "delivered": true,
-        if (RefundStatus.del_completed == status) "completed ": true,
+        if (RefundStatus.del_completed == status) "completed": true,
         "page": data.currentPage + 1,
         "limit": data.limit,
         "order[id]": "desc",
+        if (RefundStatus.awaiting_money != status &&
+            RefundStatus.approved != status)
+          "deliveredByMe": true
       },
       method: ServerMethods.GET,
       model: RefundsModel(),

@@ -179,5 +179,7 @@
   "deliver_purchases": "Deliver Purchases",
   "receiving_order": "Receiving Order",
   "deliver_money": "Deliver Money",
-  "amountCollected": "Delivered Money"
+  "amountCollected": "Delivered Money",
+  "notes": "Notes"
+
 }

@@ -231,21 +231,24 @@ class ItemDetails extends StatelessWidget {
               ),
 
               ///Note
+              ///Note
               if (model?.note != null) SizedBox(height: 2.h),
-              if (model?.note != null)
-                ReadMoreText(
-                  model?.note ?? "",
+              if (model?.note != null)RichText(
+                text: TextSpan(
+                  text: "${allTranslations.text("notes")} ",
                   style: AppTextStyles.w400
-                      .copyWith(fontSize: 14, color: Styles.DETAILS),
-                  trimCollapsedText: '...Show more',
-                  trimExpandedText: ' show less',
-                  trimLines: 2,
-                  textAlign: TextAlign.start,
-                  moreStyle: AppTextStyles.w600
-                      .copyWith(fontSize: 14, color: Styles.PRIMARY_COLOR),
-                  lessStyle: AppTextStyles.w600
-                      .copyWith(fontSize: 14, color: Styles.PRIMARY_COLOR),
+                      .copyWith(fontSize: 14, color: Styles.SUB_HEADER),
+                  children: [
+                    TextSpan(
+                      text: model?.note ?? "",
+                      style: AppTextStyles.w600.copyWith(
+                        fontSize: 14,
+                        color: Styles.PRIMARY_COLOR,
+                      ),
+                    )
+                  ],
                 ),
+              ),
             ],
           ),
         ),

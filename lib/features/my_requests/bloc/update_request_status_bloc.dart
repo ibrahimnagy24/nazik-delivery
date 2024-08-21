@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_base/components/loading_dialog.dart';
+import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/navigation/custom_navigation.dart';
+import 'package:flutter_base/navigation/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_base/core/app_core.dart';
 import 'package:flutter_base/core/app_event.dart';
@@ -33,8 +35,13 @@ class UpdateRequestStatusBloc extends Bloc<AppEvent, AppState> {
               borderColor: Styles.GREEN,
               isFloating: true),
         );
-        MyRequestsBloc.instance
-            .add(Update(arguments: (event.arguments as Map)["id"]));
+        Map data = event.arguments as Map;
+        if(data["fromRequestDetails"]){
+          CustomNavigator.push(Routes.MAIN_PAGE,clean: true, arguments: 1);
+          MyRequestsBloc.instance.updateSelectStatus(RequestStatus.completed);
+
+        }
+        MyRequestsBloc.instance.add(Update(arguments: data["id"]));
         HomePurchasesRequestsBloc.instance.add(Click(arguments: SearchEngine()));
         emit(Done());
       } else {

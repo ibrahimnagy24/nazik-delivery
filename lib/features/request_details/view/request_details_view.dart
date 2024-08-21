@@ -55,27 +55,27 @@ class RequestDetailsView extends StatelessWidget {
                             ),
                           ),
 
-                          ///Address
-                          Padding(
-                            padding: EdgeInsets.symmetric(vertical: 6.h),
-                            child: RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                text: "${allTranslations.text("address")}: ",
-                                style: AppTextStyles.w600.copyWith(
-                                    fontSize: 14, color: Styles.HEADER),
-                                children: [
-                                  TextSpan(
-                                    text: "www.zara.com",
-                                    style: AppTextStyles.w400.copyWith(
-                                      fontSize: 14,
-                                      color: Styles.SUB_HEADER,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                          // ///Address
+                          // Padding(
+                          //   padding: EdgeInsets.symmetric(vertical: 6.h),
+                          //   child: RichText(
+                          //     textAlign: TextAlign.start,
+                          //     text: TextSpan(
+                          //       text: "${allTranslations.text("address")}: ",
+                          //       style: AppTextStyles.w600.copyWith(
+                          //           fontSize: 14, color: Styles.HEADER),
+                          //       children: [
+                          //         TextSpan(
+                          //           text: "www.zara.com",
+                          //           style: AppTextStyles.w400.copyWith(
+                          //             fontSize: 14,
+                          //             color: Styles.SUB_HEADER,
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
 
                           if ((model.deposit ?? 0) > 0)
                             Padding(

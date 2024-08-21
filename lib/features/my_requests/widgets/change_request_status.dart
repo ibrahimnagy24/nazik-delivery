@@ -52,6 +52,7 @@ class ChangeRequestStatus extends StatelessWidget {
                           .read<UpdateRequestStatusBloc>()
                           .add(Click(arguments: {
                             "id": id,
+                            "fromRequestDetails" : fromRequestDetails,
                             "status": RequestStatus.values[status.index] ==
                                     RequestStatus.inProgress
                                 ? "out_for_delivery"

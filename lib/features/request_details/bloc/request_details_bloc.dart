@@ -7,12 +7,17 @@ import '../../../core/app_state.dart';
 import '../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
 import '../../../model/requests_model.dart';
+import '../../../navigation/custom_navigation.dart';
 import '../repo/request_details_repo.dart';
 
 class RequestDetailsBloc extends Bloc<AppEvent, AppState> {
   RequestDetailsBloc() : super(Start()) {
     on<Click>(onClick);
   }
+
+  static RequestDetailsBloc get instance =>
+      BlocProvider.of(CustomNavigator.navigatorState.currentContext!);
+
 
   onClick(Click event, Emitter emit) async {
     try {

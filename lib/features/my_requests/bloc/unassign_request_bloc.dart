@@ -1,6 +1,9 @@
+
 import 'package:dio/dio.dart';
 import 'package:flutter_base/components/loading_dialog.dart';
+import 'package:flutter_base/model/requests_model.dart';
 import 'package:flutter_base/navigation/custom_navigation.dart';
+import 'package:flutter_base/navigation/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_base/core/app_core.dart';
 import 'package:flutter_base/core/app_event.dart';
@@ -8,6 +11,7 @@ import 'package:flutter_base/core/app_notification.dart';
 import 'package:flutter_base/core/app_state.dart';
 import '../../../../helpers/styles.dart';
 import '../../../helpers/translation/all_translation.dart';
+import '../../request_details/bloc/request_details_bloc.dart';
 import '../repo/requests_repo.dart';
 import 'my_requests_bloc.dart';
 
@@ -32,6 +36,7 @@ class UnAssignRequestBloc extends Bloc<AppEvent, AppState> {
               isFloating: true),
         );
         CustomNavigator.pop();
+        // RequestDetailsBloc.instance.add(Click(arguments: event.arguments as int));
         MyRequestsBloc.instance.add(Update(arguments: event.arguments as int));
         emit(Done());
       } else {

@@ -231,7 +231,6 @@ class ItemDetails extends StatelessWidget {
               ),
 
               ///Note
-              ///Note
               if (model?.note != null) SizedBox(height: 2.h),
               if (model?.note != null)RichText(
                 text: TextSpan(

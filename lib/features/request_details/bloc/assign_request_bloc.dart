@@ -20,6 +20,7 @@ class AssignRequestBloc extends Bloc<AppEvent, AppState> {
   Future<void> onClick(AppEvent event, Emitter emit) async {
     emit(Loading());
     try {
+
       Response res =
           await RequestDetailsRepo.assignRequest(event.arguments as int);
       if (res.statusCode == 200) {

@@ -216,7 +216,7 @@ class RequestDetailsView extends StatelessWidget {
                               )
                             : ChangeRequestStatus(
                                 id: model.id,
-                                status: model.status!,
+                                status: model.status??RequestStatus.completed,
                                 fromRequestDetails: true,
                               ),
                       );

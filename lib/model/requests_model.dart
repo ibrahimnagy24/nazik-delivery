@@ -212,12 +212,18 @@ _getRequestStatus(status) {
   if (status == "out_for_delivery") {
     return RequestStatus.outForDelivery;
   }
+  if (status == "out_of_deposit_delivery") {
+    return RequestStatus.outForDelivery;
+  }
   if (status == "completed") {
     return RequestStatus.completed;
   }
   if (status == "amount_collected") {
     return RequestStatus.amountCollected;
+  }
+  if (status == "deposit_received") {
+    return RequestStatus.amountCollected;
   } else {
-    return null;
+    return RequestStatus.completed;
   }
 }

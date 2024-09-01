@@ -11,6 +11,7 @@ import 'package:flutter_base/features/splash/splash.dart';
 import 'package:flutter_base/features/main_page.dart';
 import 'package:flutter_base/features/terms_conditions/view/terms_view.dart';
 import '../features/change_password/view/change_password_view.dart';
+import '../features/notifications/view/notifications_view.dart';
 import '../main.dart';
 import 'routes.dart';
 
@@ -62,6 +63,8 @@ abstract class CustomNavigator {
 
       case Routes.TERMS:
         return pageRouteBuilder(const TermsConditionsView());
+      case Routes.NOTIFICATION:
+        return pageRouteBuilder(const NotificationsView());
 
       case Routes.REQUEST_DETAILS:
         return pageRouteBuilder(

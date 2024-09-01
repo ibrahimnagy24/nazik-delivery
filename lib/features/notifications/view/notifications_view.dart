@@ -43,7 +43,6 @@ class _NotificationsViewState extends State<NotificationsView> {
     return Scaffold(
       appBar: CustomAppBar(
         title: allTranslations.text("notifications"),
-        withBack: false,
       ),
       body: Column(
         children: [

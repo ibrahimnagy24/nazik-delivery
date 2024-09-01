@@ -33,13 +33,13 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
 
   Widget fregmant(int index) {
     switch (index) {
+      // case 0:
+      //   return const HomeView();
       case 0:
-        return const HomeView();
-      case 1:
         return const MyRequestsView();
-      case 2:
+      case 1:
         return const MyRefundsView();
-      case 3:
+      case 2:
         return const MoreView();
       default:
         return const SizedBox();

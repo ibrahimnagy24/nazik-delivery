@@ -51,11 +51,11 @@ class _MoreViewState extends State<MoreView> {
                     icon: 'lock',
                     onTap: () => CustomNavigator.push(Routes.CHANGE_PASSWORD),
                   ),
-                  // MoreButton(
-                  //   title: allTranslations.text("language"),
-                  //   icon: 'global',
-                  //   onTap: () => CustomNavigator.push(Routes.LANGUAGE),
-                  // ),
+                  MoreButton(
+                    title: allTranslations.text("notifications"),
+                    icon: 'notification',
+                    onTap: () => CustomNavigator.push(Routes.NOTIFICATION),
+                  ),
                   MoreButton(
                     title: allTranslations.text("privacy_policy"),
                     icon: 'shield-tick',

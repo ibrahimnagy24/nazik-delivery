@@ -39,31 +39,31 @@ class _NavAppState extends State<NavApp> {
       unselectedItemColor: context.theme.primaryColorDark,
       selectedItemColor: context.theme.primaryColor,
       items: [
-        BottomNavigationBarItem(
-          icon: Images(
-            image: 'assets/svgs/home.svg',
-            color: _selectedColor(0),
-          ),
-          label: allTranslations.text("home"),
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Images(
+        //     image: 'assets/svgs/home.svg',
+        //     color: _selectedColor(0),
+        //   ),
+        //   label: allTranslations.text("home"),
+        // ),
         BottomNavigationBarItem(
           icon: Images(
             image: 'assets/svgs/invoices.svg',
-            color: _selectedColor(1),
+            color: _selectedColor(0),
           ),
           label: allTranslations.text("requests"),
         ),
         BottomNavigationBarItem(
           icon: Images(
             image: 'assets/svgs/task_square.svg',
-            color: _selectedColor(2),
+            color: _selectedColor(1),
           ),
           label: allTranslations.text("my_refunds"),
         ),
         BottomNavigationBarItem(
           icon: Images(
             image: 'assets/svgs/profile-circle.svg',
-            color: _selectedColor(3),
+            color: _selectedColor(2),
           ),
           label: allTranslations.text("profile"),
         ),

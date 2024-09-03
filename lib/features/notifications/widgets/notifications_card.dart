@@ -104,8 +104,7 @@ class _NotificationCardState extends State<NotificationCard> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        (widget.notification?.createdAt ?? DateTime.now())
-                            .format("d/MMM/yyyy h:m a"),
+                        widget.notification?.createdAt??"",
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.w400

@@ -45,7 +45,7 @@ class NotificationModel {
   String? title;
   String? body;
   String? image;
-  DateTime? createdAt;
+  String? createdAt;
 
   NotificationModel(
       {this.id,
@@ -61,9 +61,7 @@ class NotificationModel {
     title = json['title'];
     image = json['image'];
     body = json['body'];
-    createdAt = json['created_at'] != null
-        ? DateTime.parse(json['created_at'])
-        : DateTime.now();
+    createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -73,7 +71,7 @@ class NotificationModel {
     data['image'] = image;
     data['title'] = title;
     data['body'] = body;
-    data['created_at'] = createdAt?.toIso8601String();
+    data['created_at'] = createdAt;
     return data;
   }
 }

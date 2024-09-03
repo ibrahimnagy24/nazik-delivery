@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true"/>
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Allow cleartext traffic for audio sources -->
+        <domain includeSubdomains="true">dashboard.engineering-tracks.com</domain>
+        <!-- Add other domains as needed -->
+    </domain-config>
+</network-security-config>

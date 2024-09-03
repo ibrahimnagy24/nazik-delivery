@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/components/custom_app_bar.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
+import '../../../bloc/user_bloc.dart';
 import '../../../core/app_event.dart';
-import '../../../core/app_state.dart';
 import '../../../model/search_engine.dart';
 import '../bloc/my_requests_bloc.dart';
 import '../widgets/requests_body.dart';
@@ -18,9 +18,8 @@ class MyRequestsView extends StatefulWidget {
 class _MyRequestsViewState extends State<MyRequestsView> {
   @override
   void initState() {
-    if (MyRequestsBloc.instance.state is! Done) {
-      MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
-    }
+    UserBloc.instance.add(Click());
+    MyRequestsBloc.instance.add(Click(arguments: SearchEngine()));
     super.initState();
   }
 

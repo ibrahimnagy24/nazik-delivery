@@ -37,7 +37,7 @@ class UpdateRequestStatusBloc extends Bloc<AppEvent, AppState> {
         );
         Map data = event.arguments as Map;
         if(data["fromRequestDetails"]){
-          CustomNavigator.push(Routes.MAIN_PAGE,clean: true, arguments: 1);
+          CustomNavigator.push(Routes.MAIN_PAGE,clean: true, arguments: 0);
           MyRequestsBloc.instance.updateSelectStatus(RequestStatus.completed);
 
         }

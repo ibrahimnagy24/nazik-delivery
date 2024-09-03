@@ -20,6 +20,7 @@ abstract class MyRequestsRepo {
         "page": data.currentPage + 1,
         "limit": data.limit,
         "order[id]": "desc",
+        "deliveredByMe": true
       },
       method: ServerMethods.GET,
       model: RequestsModel(),

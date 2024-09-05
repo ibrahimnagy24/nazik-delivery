@@ -143,6 +143,7 @@ class RequestCard extends StatelessWidget {
               ChangeRequestStatus(
                   id: model?.id,
                   status: model!.status!,
+                  deliveredDeposit: model!.deliveredDeposit == true,
                   isDeposit: ((model!.deposit ?? 0) > 0)),
           ],
         ),

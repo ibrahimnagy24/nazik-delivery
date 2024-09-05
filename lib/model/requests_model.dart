@@ -43,6 +43,7 @@ class RequestModel extends SingleMapper {
   int? employeeId;
   String? address, mobileNumber, orderNumber;
   RequestStatus? status;
+  bool? deliveredDeposit;
   double? deposit;
   List<ItemModel>? items;
 
@@ -53,6 +54,7 @@ class RequestModel extends SingleMapper {
       this.mobileNumber,
       this.orderNumber,
       this.deposit,
+      this.deliveredDeposit,
       this.items,
       this.status});
 
@@ -62,6 +64,7 @@ class RequestModel extends SingleMapper {
     address = json['user_address'];
     mobileNumber = json['mobile_number'];
     orderNumber = json['number'];
+    deliveredDeposit = json['delivered_deposit'];
     deposit =
         json['deposit'] != null ? double.parse(json['deposit'].toString()) : 0;
     if (json['items'] != null) {
@@ -81,6 +84,7 @@ class RequestModel extends SingleMapper {
     data['mobile_number'] = mobileNumber;
     data['user_address'] = address;
     data['deposit'] = deposit;
+    data['delivered_deposit'] = deliveredDeposit;
     data['status'] = status?.index;
     if (items != null) {
       data['items'] = items!.map((v) => v.toJson()).toList();

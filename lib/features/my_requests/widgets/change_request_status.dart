@@ -18,11 +18,12 @@ class ChangeRequestStatus extends StatelessWidget {
       required this.id,
       required this.status,
       this.fromRequestDetails = false,
+      this.deliveredDeposit = false,
       this.isDeposit = false});
   final RequestStatus status;
   final int? id;
   final bool fromRequestDetails;
-  final bool isDeposit;
+  final bool isDeposit, deliveredDeposit;
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +54,14 @@ class ChangeRequestStatus extends StatelessWidget {
                           .add(Click(arguments: {
                             "id": id,
                             "fromRequestDetails": fromRequestDetails,
-                             "deposit_status": isDeposit,
+                            "deposit_status": isDeposit,
                             "status": RequestStatus.values[status.index] ==
                                     RequestStatus.inProgress
                                 ? "out_for_delivery"
                                 : isDeposit
-                                    ? "purchase_in_progress"
+                                    ? deliveredDeposit
+                                        ? "completed"
+                                        : "purchase_in_progress"
                                     : "completed"
                           })),
                     );

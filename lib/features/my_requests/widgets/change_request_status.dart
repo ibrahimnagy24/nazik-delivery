@@ -60,7 +60,7 @@ class ChangeRequestStatus extends StatelessWidget {
                                 ? "out_for_delivery"
                                 : isDeposit
                                     ? deliveredDeposit
-                                        ? "completed"
+                                        ? "deposit_received"
                                         : "purchase_in_progress"
                                     : "completed"
                           })),

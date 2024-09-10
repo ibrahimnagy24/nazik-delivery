@@ -18,7 +18,6 @@ class RequestsTabs extends StatefulWidget {
 }
 
 class _RequestsTabsState extends State<RequestsTabs> {
-
   final List<GlobalKey> _globalKeys = [];
 
   static animatedRowScroll(BuildContext context) {
@@ -43,16 +42,19 @@ class _RequestsTabsState extends State<RequestsTabs> {
                     children: [
                       SizedBox(width: 12.h),
                       ...List.generate(
-                        RequestStatus.values.length,
-                            (index) {
+                        MyRequestsBloc.instance.tabs.length,
+                        (index) {
                           _globalKeys.add(GlobalKey(debugLabel: "$index"));
                           Future.delayed(const Duration(seconds: 1), () {
-                            animatedRowScroll(
-                                _globalKeys[snapshot.data?.index ?? 0]
+                            animatedRowScroll(_globalKeys[
+                                        MyRequestsBloc.instance.tabs[index] ==
+                                                snapshot.data
+                                            ? index
+                                            : 0]
                                     .currentContext ??
-                                    context);
+                                context);
                           });
-                          return  InkWell(
+                          return InkWell(
                             key: _globalKeys[index],
                             focusColor: Colors.transparent,
                             hoverColor: Colors.transparent,
@@ -61,15 +63,16 @@ class _RequestsTabsState extends State<RequestsTabs> {
                             onTap: () {
                               if (state is! Loading) {
                                 MyRequestsBloc.instance.updateSelectStatus(
-                                    RequestStatus.values[index]);
+                                    MyRequestsBloc.instance.tabs[index]);
                                 MyRequestsBloc.instance
                                     .add(Click(arguments: SearchEngine()));
                               }
                             },
                             child: FilterOption(
-                              title:  allTranslations
-                                  .text(RequestStatus.values[index].name),
-                              isSelect:  RequestStatus.values[index] == snapshot.data,
+                              title: allTranslations.text(
+                                  MyRequestsBloc.instance.tabs[index].name),
+                              isSelect: MyRequestsBloc.instance.tabs[index] ==
+                                  snapshot.data,
                             ),
                           );
                         },
@@ -77,27 +80,6 @@ class _RequestsTabsState extends State<RequestsTabs> {
                     ],
                   ),
                 );
-                // return Row(
-                //   children: List.generate(
-                //       RequestStatus.values.length,
-                //       (index) => Expanded(
-                //             child: TabWidget(
-                //               data: allTranslations
-                //                   .text(RequestStatus.values[index].name),
-                //               isSelected:
-                //                   RequestStatus.values[index] == snapshot.data,
-                //               onClick: () {
-                //                 if (state is! Loading) {
-                //                   MyRequestsBloc.instance.updateSelectStatus(
-                //                       RequestStatus.values[index]);
-                //                   MyRequestsBloc.instance
-                //                       .add(Click(arguments: SearchEngine()));
-                //                 }
-                //               },
-                //               expand: true,
-                //             ),
-                //           )),
-                // );
               });
         },
       ),

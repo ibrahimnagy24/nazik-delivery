@@ -214,10 +214,17 @@ class RequestDetailsView extends StatelessWidget {
                                   },
                                 ),
                               )
-                            : ChangeRequestStatus(
-                                id: model.id,
-                                status: model.status??RequestStatus.completed,
-                                fromRequestDetails: true,
+                            : Visibility(
+                                visible: (model.status != null &&
+                                    model.status !=
+                                        RequestStatus.amountCollected &&
+                                    model.status != RequestStatus.completed),
+                                child: ChangeRequestStatus(
+                                  id: model.id,
+                                  status:
+                                      model.status ?? RequestStatus.completed,
+                                  fromRequestDetails: true,
+                                ),
                               ),
                       );
                     } else {

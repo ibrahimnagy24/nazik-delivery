@@ -24,6 +24,13 @@ class MyRequestsBloc extends Bloc<AppEvent, AppState> {
     on<Click>(onClick);
   }
 
+  List<RequestStatus> tabs = [
+    RequestStatus.inProgress,
+    RequestStatus.outForDelivery,
+    RequestStatus.completed,
+    RequestStatus.amountCollected,
+  ];
+
   final selectStatus = BehaviorSubject<RequestStatus>();
   Function(RequestStatus) get updateSelectStatus => selectStatus.sink.add;
   Stream<RequestStatus> get selectStatusStream =>

@@ -13,17 +13,17 @@ import '../bloc/unassign_request_bloc.dart';
 import '../bloc/update_request_status_bloc.dart';
 
 class ChangeRequestStatus extends StatelessWidget {
-  const ChangeRequestStatus(
-      {super.key,
-      required this.id,
-      required this.status,
-      this.fromRequestDetails = false,
-      this.deliveredDeposit = false,
-      this.isDeposit = false});
+  const ChangeRequestStatus({
+    super.key,
+    required this.id,
+    required this.status,
+    this.fromRequestDetails = false,
+    this.deliveredDeposit = false,
+  });
   final RequestStatus status;
   final int? id;
   final bool fromRequestDetails;
-  final bool isDeposit, deliveredDeposit;
+  final bool deliveredDeposit;
 
   @override
   Widget build(BuildContext context) {
@@ -31,44 +31,41 @@ class ChangeRequestStatus extends StatelessWidget {
       padding: EdgeInsets.only(top: 8.h),
       child: Row(
         children: [
-          if (RequestStatus.inProgress == status ||
-              RequestStatus.outForDelivery == status)
-            Expanded(
-              child: BlocProvider(
-                create: (context) => UpdateRequestStatusBloc(),
-                child: BlocBuilder<UpdateRequestStatusBloc, AppState>(
-                  builder: (context, state) {
-                    return CustomBtn(
-                      height: fromRequestDetails ? 45 : 35,
-                      radius: 100,
-                      fontSize: 13,
-                      text: allTranslations
-                          .text(RequestStatus.values[status.index + 1].name),
-                      // color: Styles.requestStatus(
-                      //         RequestStatus.values[status.index + 1])
-                      //     .withOpacity(0.08),
-                      // textColor: Styles.requestStatus(
-                      //     RequestStatus.values[status.index + 1]),
-                      onPressed: () => context
-                          .read<UpdateRequestStatusBloc>()
-                          .add(Click(arguments: {
-                            "id": id,
-                            "fromRequestDetails": fromRequestDetails,
-                            "deposit_status": isDeposit,
-                            "status": RequestStatus.values[status.index] ==
-                                    RequestStatus.inProgress
-                                ? "out_for_delivery"
-                                : isDeposit
-                                    ? deliveredDeposit
-                                        ? "deposit_received"
-                                        : "purchase_in_progress"
-                                    : "completed"
-                          })),
-                    );
-                  },
-                ),
+          Expanded(
+            child: BlocProvider(
+              create: (context) => UpdateRequestStatusBloc(),
+              child: BlocBuilder<UpdateRequestStatusBloc, AppState>(
+                builder: (context, state) {
+                  return CustomBtn(
+                    height: fromRequestDetails ? 45 : 35,
+                    radius: 100,
+                    fontSize: 13,
+                    text: (RequestStatus.outForDelivery == status ||
+                            RequestStatus.outOfDepositDelivery == status)
+                        ? allTranslations.text("completed")
+                        : allTranslations.text("outForDelivery"),
+                    onPressed: () => context
+                        .read<UpdateRequestStatusBloc>()
+                        .add(Click(arguments: {
+                          "id": id,
+                          "fromRequestDetails": fromRequestDetails,
+                          "deposit_status": deliveredDeposit,
+                          "status": (status == RequestStatus.inLibyaWarehouse ||
+                                  status == RequestStatus.depositPaymentRequest)
+                              ? (RequestStatus.inLibyaWarehouse == status
+                                  ? "out_for_delivery"
+                                  : "out_of_deposit_delivery")
+                              : deliveredDeposit &&
+                                      RequestStatus.outOfDepositDelivery ==
+                                          status
+                                  ? "deposit_received"
+                                  : "completed"
+                        })),
+                  );
+                },
               ),
             ),
+          ),
           if (RequestStatus.inProgress == status) SizedBox(width: 8.w),
           if (RequestStatus.inProgress == status)
             Expanded(

@@ -204,20 +204,28 @@ class ItemModel extends SingleMapper {
   }
 }
 
-enum RequestStatus { inProgress, outForDelivery, completed, amountCollected }
+enum RequestStatus {
+  inLibyaWarehouse,
+  depositPaymentRequest,
+  inProgress,
+  outForDelivery,
+  outOfDepositDelivery,
+  completed,
+  amountCollected
+}
 
 _getRequestStatus(status) {
   if (status == "in_libya_warehouse") {
-    return RequestStatus.inProgress;
+    return RequestStatus.inLibyaWarehouse;
   }
   if (status == "deposit_payment_request") {
-    return RequestStatus.inProgress;
+    return RequestStatus.depositPaymentRequest;
   }
   if (status == "out_for_delivery") {
     return RequestStatus.outForDelivery;
   }
   if (status == "out_of_deposit_delivery") {
-    return RequestStatus.outForDelivery;
+    return RequestStatus.outOfDepositDelivery;
   }
   if (status == "completed") {
     return RequestStatus.completed;

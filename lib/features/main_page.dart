@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/features/trips/view/my_trips_view.dart';
 import 'package:flutter_base/widgets/nav_app.dart';
 
 import '../bloc/user_bloc.dart';
 import '../core/app_event.dart';
-import 'home/view/home_view.dart';
 import 'more/view/more_view.dart';
 import 'my_refunds/view/my_refunds_view.dart';
 import 'my_requests/view/my_requests_view.dart';
@@ -36,10 +36,12 @@ class _MainPageState extends State<MainPage> with WidgetsBindingObserver {
       // case 0:
       //   return const HomeView();
       case 0:
-        return const MyRequestsView();
+        return const MyTripsView();
       case 1:
-        return const MyRefundsView();
+        return const MyRequestsView();
       case 2:
+        return const MyRefundsView();
+      case 3:
         return const MoreView();
       default:
         return const SizedBox();

@@ -130,7 +130,7 @@
   "deposit_value": "قيمة العربون",
   "order_assigned_successfully": "تم تعيين الطلب بنجاح!",
   "order_unassigned_successfully": "تم إلغاء الطلب بنجاح!",
-  "status_updated_successfully": "تم تحديث حالة الطلب بنجاح!",
+  "status_updated_successfully": "تم تحديث الحالة بنجاح!",
   "your_profile_has_been_updated": "تم تحديث الحساب بنجاح!",
   "outForDelivery": "جاري التوصيل",
   "refund": "الارجاع",
@@ -154,5 +154,11 @@
   "receiving_order": "استلام طلب",
   "deliver_money": "تسليم مال",
   "amountCollected": "تم تسليم المبلغ",
-  "notes": "ملاحظات"
+  "notes": "ملاحظات",
+  "trips": "الرحلات",
+  "trip_name": "اسم الرحلة",
+  "awaiting_to_be_delivered": "بدأ الرحلة",
+  "out_for_delivery": "قيد توصيل الرحلة",
+  "start_trip": "بدأ الرحلة",
+  "end_trip": "انهاء الرحلة"
 }

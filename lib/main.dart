@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/config/colors/light_colors.dart';
 import 'package:flutter_base/config/themes/themes.dart';
-import 'package:flutter_base/utility/keybord_lisenter.dart';
 import 'package:flutter_base/utility/un_focus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,18 +10,10 @@ import 'package:flutter_base/helpers/shared_helper.dart';
 import 'package:flutter_base/helpers/translation/all_translation.dart';
 import 'package:flutter_base/helpers/translation/translations.dart';
 import 'package:flutter_base/bloc/main_app_bloc.dart';
-import 'features/home/bloc/home_purchases_requests_bloc.dart';
-import 'features/home/bloc/home_refunds_requests_bloc.dart';
-import 'features/my_refunds/bloc/my_money_refunds_bloc.dart';
-import 'features/my_refunds/bloc/my_order_refunds_bloc.dart';
-import 'features/my_requests/bloc/my_requests_bloc.dart';
-import 'features/notifications/bloc/notifications_bloc.dart';
-import 'features/profile/bloc/profile_bloc.dart';
-import 'features/splash/splash_bloc.dart';
+import 'config/providers.dart';
 import 'firebase_options.dart';
 import 'helpers/notification_helper/notification_helper.dart';
 import 'helpers/styles.dart';
-import 'bloc/user_bloc.dart';
 import 'navigation/custom_navigation.dart';
 import 'navigation/routes.dart';
 
@@ -63,19 +54,7 @@ class _MyAppState extends State<MyApp> {
       statusBarBrightness: Brightness.light,
     ));
     return MultiBlocProvider(
-      providers: [
-        BlocProvider<SplashBloc>(create: (_) => SplashBloc()),
-        BlocProvider<UserBloc>(create: (_) => UserBloc()),
-        BlocProvider<KeyBordBloc>(create: (_) => KeyBordBloc()),
-        BlocProvider<HomePurchasesRequestsBloc>(create: (_) => HomePurchasesRequestsBloc()),
-        BlocProvider<NotificationsBloc>(create: (_) => NotificationsBloc()),
-        BlocProvider<MyRequestsBloc>(create: (_) => MyRequestsBloc()),
-        ///Refunds
-        BlocProvider<HomeRefundsRequestsBloc>(create: (_) => HomeRefundsRequestsBloc()),
-        BlocProvider<MyMoneyRefundsBloc>(create: (_) => MyMoneyRefundsBloc()),
-        BlocProvider<MyOrderRefundsBloc>(create: (_) => MyOrderRefundsBloc()),
-        BlocProvider<ProfileBloc>(create: (_) => ProfileBloc()),
-      ],
+      providers: ProviderList.providers,
       child: StreamBuilder<String>(
         stream: mainAppBloc.langStream,
         builder: (context, lang) {

@@ -41,7 +41,7 @@ class RequestsModel extends SingleMapper {
 class RequestModel extends SingleMapper {
   int? id;
   int? employeeId;
-  String? address, mobileNumber, orderNumber;
+  String? address, mobileNumber, orderNumber, deliveryRate;
   RequestStatus? status;
   bool? deliveredDeposit;
   double? deposit;
@@ -50,6 +50,7 @@ class RequestModel extends SingleMapper {
   RequestModel(
       {this.id,
       this.employeeId,
+      this.deliveryRate,
       this.address,
       this.mobileNumber,
       this.orderNumber,
@@ -61,6 +62,7 @@ class RequestModel extends SingleMapper {
   RequestModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     employeeId = json['employee_id'];
+    deliveryRate = json['delivery_rate'];
     address = json['user_address'];
     mobileNumber = json['mobile_number'];
     orderNumber = json['number'];
@@ -79,6 +81,7 @@ class RequestModel extends SingleMapper {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['delivery_rate'] = deliveryRate;
     data['employee_id'] = employeeId;
     data['number'] = orderNumber;
     data['mobile_number'] = mobileNumber;

@@ -186,6 +186,7 @@
   "out_for_delivery": "Out For Delivery",
   "trip_name": "Trip Name",
   "start_trip": "Start Trip",
-  "end_trip": "End Trip"
+  "end_trip": "End Trip",
+  "delivery_rate": "Delivery Rate"
 
 }

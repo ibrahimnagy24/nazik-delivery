@@ -160,5 +160,6 @@
   "awaiting_to_be_delivered": "بدأ الرحلة",
   "out_for_delivery": "قيد توصيل الرحلة",
   "start_trip": "بدأ الرحلة",
-  "end_trip": "انهاء الرحلة"
+  "end_trip": "انهاء الرحلة",
+  "delivery_rate": "سعر التوصيل"
 }

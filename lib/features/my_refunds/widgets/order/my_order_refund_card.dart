@@ -86,6 +86,27 @@ class MyOrderRefundCard extends StatelessWidget {
               ),
             ),
 
+            ///Delivery Rate
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 2.h),
+              child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  text: "${allTranslations.text("delivery_rate")}: ",
+                  style: AppTextStyles.w600
+                      .copyWith(fontSize: 14, color: Styles.HEADER),
+                  children: [
+                    TextSpan(
+                      text: model.deliveryRate ?? "",
+                      style: AppTextStyles.w400.copyWith(
+                        fontSize: 14,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+
             ///Refund Amount
             RichText(
               text: TextSpan(

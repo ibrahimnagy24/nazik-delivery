@@ -43,7 +43,7 @@ class RefundModel extends SingleMapper {
   int? id;
   String? refundNumber;
   RefundStatus? status;
-  String? address, mobileNumber;
+  String? address, mobileNumber, deliveryRate;
   String? refundAmount;
   List<ItemModel>? items;
 
@@ -52,6 +52,7 @@ class RefundModel extends SingleMapper {
       this.refundNumber,
       this.address,
       this.mobileNumber,
+      this.deliveryRate,
       this.refundAmount,
       this.items,
       this.status});
@@ -61,6 +62,7 @@ class RefundModel extends SingleMapper {
     refundNumber = json['number'];
     address = json['user_address'];
     mobileNumber = json['mobile_number'];
+    deliveryRate = json['delivery_rate'];
     refundAmount = json['refund_amount']?.toString();
     if (json['items'] != null) {
       items = <ItemModel>[];
@@ -77,6 +79,7 @@ class RefundModel extends SingleMapper {
     data['number'] = refundNumber;
     data['refund_amount'] = refundAmount;
     data['mobile_number'] = mobileNumber;
+    data['delivery_rate'] = deliveryRate;
     data['user_address'] = address;
     data['status'] = status?.index;
     if (items != null) {

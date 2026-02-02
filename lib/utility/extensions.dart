@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
 import '../navigation/custom_navigation.dart';
@@ -141,12 +142,16 @@ extension DateTimeExtension on DateTime {
 }
 
 extension ScreenScale on num {
-  double get w =>
-      MediaQuery.of(CustomNavigator.navigatorState.currentContext!).size.width *
-      (toDouble() / 375);
-  double get h =>
-      MediaQuery.of(CustomNavigator.navigatorState.currentContext!)
-          .size
-          .height *
-      (toDouble() / 812);
+  double get w => kIsWeb
+      ? toDouble()
+      : MediaQuery.of(CustomNavigator.navigatorState.currentContext!)
+              .size
+              .width *
+          (toDouble() / 375);
+  double get h => kIsWeb
+      ? toDouble()
+      : MediaQuery.of(CustomNavigator.navigatorState.currentContext!)
+              .size
+              .height *
+          (toDouble() / 812);
 }

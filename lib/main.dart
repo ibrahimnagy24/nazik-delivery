@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_base/config/colors/light_colors.dart';
@@ -14,16 +15,22 @@ import 'config/providers.dart';
 import 'firebase_options.dart';
 import 'helpers/notification_helper/notification_helper.dart';
 import 'helpers/styles.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'navigation/custom_navigation.dart';
 import 'navigation/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (!kIsWeb) {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+  if (!kIsWeb) {
+    FirebaseNotifications.setUpFirebase();
+  }
+
   await SharedHelper.init();
-  FirebaseNotifications.setUpFirebase();
   await allTranslations.init();
   runApp(const MyApp());
 }
@@ -60,11 +67,25 @@ class _MyAppState extends State<MyApp> {
         builder: (context, lang) {
           return lang.hasData
               ? MaterialApp(
-                  builder: (context, child) => MediaQuery(
-                    data: MediaQuery.of(context).copyWith(
-                      textScaler: const TextScaler.linear(1),
-                    ),
-                    child: Unfocus(child: child!),
+                  builder: (context, child) => ResponsiveBreakpoints.builder(
+                    child: Builder(builder: (context) {
+                      return MaxWidthBox(
+                        maxWidth: 390,
+                        child: MediaQuery(
+                          data: MediaQuery.of(context).copyWith(
+                            textScaler: const TextScaler.linear(1),
+                          ),
+                          child: Unfocus(child: child!),
+                        ),
+                      );
+                    }),
+                    breakpoints: [
+                      const Breakpoint(start: 0, end: 390, name: MOBILE),
+                      // const Breakpoint(start: 451, end: 800, name: TABLET),
+                      // const Breakpoint(start: 801, end: 1920, name: DESKTOP),
+                      // const Breakpoint(
+                      //     start: 1921, end: double.infinity, name: '4K'),
+                    ],
                   ),
                   initialRoute: Routes.SPLASH,
                   navigatorKey: CustomNavigator.navigatorState,

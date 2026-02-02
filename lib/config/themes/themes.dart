@@ -14,7 +14,7 @@ ThemeData _buildLightTheme() {
       primary: LightColor.primary,
       primaryContainer: LightColor.primaryColorLight,
       error: LightColor.brightRed,
-      background: LightColor.white,
+      surface: LightColor.white,
     ),
     brightness: Brightness.light,
     primaryColor: LightColor.primary,
@@ -23,7 +23,7 @@ ThemeData _buildLightTheme() {
     secondaryHeaderColor: LightColor.secondary,
     canvasColor: LightColor.white,
     scaffoldBackgroundColor: LightColor.white,
-    bottomAppBarTheme: const BottomAppBarTheme(
+    bottomAppBarTheme: const BottomAppBarThemeData(
       color: LightColor.white,
       elevation: 10,
     ),
@@ -36,8 +36,8 @@ ThemeData _buildLightTheme() {
     toggleButtonsTheme: const ToggleButtonsThemeData(
       color: LightColor.secondary,
     ),
-    dialogBackgroundColor: LightColor.white,
-    indicatorColor: LightColor.primary,
+    dialogTheme: const DialogThemeData(backgroundColor: LightColor.white),
+    tabBarTheme: const TabBarThemeData(indicatorColor: LightColor.primary),
     hintColor: LightColor.primary,
     primaryTextTheme: Typography.material2018(
       platform: TargetPlatform.iOS,
@@ -56,7 +56,7 @@ ThemeData _buildLightTheme() {
     ),
     sliderTheme: const SliderThemeData().copyWith(
       valueIndicatorColor: LightColor.secondary,
-      showValueIndicator: ShowValueIndicator.always,
+      showValueIndicator: ShowValueIndicator.onDrag,
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     appBarTheme: base.appBarTheme.copyWith(
@@ -104,10 +104,10 @@ ThemeData _buildLightTheme() {
       ),
     ),
     dataTableTheme: DataTableThemeData(
-      dataRowColor: MaterialStateProperty.all(
+      dataRowColor: WidgetStateProperty.all(
         LightColor.brightRed,
       ),
-      headingRowColor: MaterialStateProperty.all(
+      headingRowColor: WidgetStateProperty.all(
         LightColor.white,
       ),
       headingTextStyle: const TextStyle(
@@ -121,7 +121,7 @@ ThemeData _buildLightTheme() {
       style: OutlinedButton.styleFrom(foregroundColor: LightColor.grey),
     ),
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.all(
+      fillColor: WidgetStateProperty.all(
         LightColor.primary,
       ),
     ),
@@ -135,7 +135,7 @@ ThemeData _buildDarktheme() {
       secondary: DarkColor.secondary,
       primary: DarkColor.primary,
       error: DarkColor.brightRed,
-      background: DarkColor.offWhite,
+      surface: DarkColor.offWhite,
     ),
     brightness: Brightness.light,
     primaryColor: DarkColor.primary,
@@ -144,7 +144,7 @@ ThemeData _buildDarktheme() {
     secondaryHeaderColor: DarkColor.secondary,
     canvasColor: DarkColor.offWhite,
     scaffoldBackgroundColor: DarkColor.black,
-    bottomAppBarTheme: const BottomAppBarTheme(color: DarkColor.offWhite),
+    bottomAppBarTheme: const BottomAppBarThemeData(color: DarkColor.offWhite),
     cardColor: DarkColor.offWhite,
     dividerColor: DarkColor.grey,
     highlightColor: DarkColor.grey,
@@ -154,8 +154,8 @@ ThemeData _buildDarktheme() {
     toggleButtonsTheme: const ToggleButtonsThemeData(
       color: DarkColor.secondary,
     ),
-    dialogBackgroundColor: DarkColor.offWhite,
-    indicatorColor: DarkColor.primary,
+    dialogTheme: const DialogThemeData(backgroundColor: DarkColor.offWhite),
+    tabBarTheme: const TabBarThemeData(indicatorColor: DarkColor.primary),
     hintColor: DarkColor.primary,
     primaryTextTheme: Typography.material2018(
       platform: TargetPlatform.iOS,
@@ -174,7 +174,7 @@ ThemeData _buildDarktheme() {
     ),
     sliderTheme: const SliderThemeData().copyWith(
       valueIndicatorColor: DarkColor.secondary,
-      showValueIndicator: ShowValueIndicator.always,
+      showValueIndicator: ShowValueIndicator.onDrag,
     ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
     appBarTheme: base.appBarTheme.copyWith(

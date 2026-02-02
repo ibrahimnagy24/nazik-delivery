@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base/components/custom_network_image.dart';
 import 'package:flutter_base/components/custom_simple_dialog.dart';
@@ -21,7 +22,7 @@ class ItemCard extends StatelessWidget {
         );
       },
       child: Container(
-        height: 80,
+        height: kIsWeb ? 120 : 80,
         margin: EdgeInsets.symmetric(vertical: 8.h),
         decoration: BoxDecoration(
             color: Styles.WHITE_COLOR,
@@ -30,8 +31,10 @@ class ItemCard extends StatelessWidget {
         child: Row(
           children: [
             CustomNetworkImage.containerNewWorkImage(
-              image: model?.image??"",
-                height: 80, width: 80, fit: BoxFit.cover),
+                image: model?.image ?? "",
+                height: kIsWeb ? 100 : 80,
+                width: 80,
+                fit: BoxFit.cover),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
